@@ -37,9 +37,10 @@
         "color": "peru"
     },
     {
-        "title": "Ben's Birthday",
+        "title": "Stabby McStabbington's Birthday",
         "start": "2025-04-20",
         "color": "orange"
+        "borderColor": "gold"
     },
     {
         "title": "Pearl Project Due",
@@ -207,6 +208,7 @@
         "title": "Stewy's Birthday",
         "start": "2025-11-03",
         "color": "orange"
+        "borderColor" : "gold"
     },
     {
         "title": "Kit's Birthday",
