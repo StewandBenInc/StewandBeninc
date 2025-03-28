@@ -359,3 +359,45 @@
   #top{
     margin-top:75px;
   }
+
+  #bottomitem{
+    margin-bottom: 5px !important;
+  }
+
+  .mainbody {
+    max-width: 85%;
+    margin: 0 auto;
+    text-align: center;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    margin-top: 25px;
+    background-color: #696969;
+}
+
+input[type="text"] {
+  display: inline-block;
+  padding: 10px;
+  margin: 10px 0;
+  text-align: left;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+textarea{
+  display: inline-block;
+  padding: 10px;
+  margin: 10px 0;
+  text-align: left;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+button {
+  background-color: #007BFF;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
