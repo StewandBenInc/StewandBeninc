@@ -352,7 +352,7 @@
   .top-menu:hover .top-menu-content {display: block;}
 
   #calendar {
-    height: 675px;
+    height: 650px;
     margin-top: 75px;
   }
   
@@ -391,6 +391,7 @@ textarea{
   text-align: left;
   border: 1px solid #ccc;
   border-radius: 5px;
+  max-width: 100%;
 }
 
 button {

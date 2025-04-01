@@ -19,9 +19,28 @@
             <br>
             <input type="text" id="subject" required placeholder="Subject">
             <br>
-            <textarea id="content" required placeholder="Content"></textarea>
+            <input type="text" id="title" required placeholder="Title">
             <br>
-            <button id="submit">Submit</button>
+            <div id="headings">
+                <input type="text" id="heading1" class="heading" required placeholder="Heading 1">
+                <div id="subheadinglistheading1">
+                    <input type="text" id="subheading1heading1" class="subheading" required placeholder="Subheading 1 in Heading 1">
+                    <br>
+                    <div id="itemlistsubheading1heading1">
+                        <textarea id="item1subheading1heading1" class="item" required placeholder="Item 1 in Subheading 1 in Heading 1"></textarea>
+                        <br>             
+                    </div>
+                    <button class="itemadder" onclick="addItem(1,1)">Add Item</button>
+                    <br>
+                </div>
+                <br>
+                <button class="subheadingadder" onclick="addSubheading(1)">Add Subheading</button>
+            </div>
+            <br>
+            <button class="headingadder" onclick="addHeading()">Add Heading</button>
+            <br>
+            <br>
+            <button id="submit" onclick="submit()">Submit</button>
         </div>
     </body>
 </html>
