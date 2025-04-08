@@ -19,41 +19,129 @@ function addHeading() {
     ++headingCoonter;
     subheadingCoonter.push(1);
     itemCoonter.push([1]);
-    dataDiv.innerHTML += `<br>
-    <input type="text" id="heading${headingCoonter}" class="heading" oninput="collectData(false,true)" required placeholder="Heading ${headingCoonter}">
-                <div id="subheadinglistheading${headingCoonter}">
-                    <input type="text" id="subheading1heading${headingCoonter}" oninput="collectData(false,true)" class="subheading" required placeholder="Subheading 1 in Heading ${headingCoonter}">
-                    <br>
-                    <div id="itemlistsubheading1heading${headingCoonter}">
-                        <textarea id="item1subheading1heading${headingCoonter}" class="item" oninput="collectData(false,true)" required placeholder="Item 1 in Subheading 1 in Heading ${headingCoonter}"></textarea>
-                        <br>             
-                    </div>
-                    <button class="itemadder" onclick="addItem(${headingCoonter},1)" onclick="loadData()" oninput="collectData(false,true)">Add Item</button>
-                    <br>
-                </div>
-                <br>
-                <button class="subheadingadder" onclick="addSubheading(${headingCoonter})" onclick="loadData()" oninput="collectData(false,true)">Add Subheading</button>`;
+
+    const headingInput = document.createElement("input");
+    headingInput.type = "text";
+    headingInput.id = `heading${headingCoonter}`;
+    headingInput.className = "heading";
+    headingInput.required = true;
+    headingInput.placeholder = `Heading ${headingCoonter}`;
+    headingInput.setAttribute("oninput", "collectData(false,true)");
+
+    const subheadingDiv = document.createElement("div");
+    subheadingDiv.id = `subheadinglistheading${headingCoonter}`;
+
+    const subheadingInput = document.createElement("input");
+    subheadingInput.type = "text";
+    subheadingInput.id = `subheading1heading${headingCoonter}`;
+    subheadingInput.className = "subheading";
+    subheadingInput.required = true;
+    subheadingInput.placeholder = `Subheading 1 in Heading ${headingCoonter}`;
+    subheadingInput.setAttribute("oninput", "collectData(false,true)");
+
+    const itemListDiv = document.createElement("div");
+    itemListDiv.id = `itemlistsubheading1heading${headingCoonter}`;
+
+    const itemTextarea = document.createElement("textarea");
+    itemTextarea.id = `item1subheading1heading${headingCoonter}`;
+    itemTextarea.className = "item";
+    itemTextarea.required = true;
+    itemTextarea.placeholder = `Item 1 in Subheading 1 in Heading ${headingCoonter}`;
+    itemTextarea.setAttribute("oninput", "collectData(false,true)");
+
+    itemListDiv.appendChild(itemTextarea);
+    itemListDiv.appendChild(document.createElement("br"));
+
+    const itemAdderBtn = document.createElement("button");
+    itemAdderBtn.className = "itemadder";
+    itemAdderBtn.textContent = "Add Item";
+    itemAdderBtn.setAttribute("onclick", `addItem(${headingCoonter}, 1)`);
+
+    subheadingDiv.appendChild(subheadingInput);
+    subheadingDiv.appendChild(document.createElement("br"));
+    subheadingDiv.appendChild(itemListDiv);
+    subheadingDiv.appendChild(itemAdderBtn);
+    subheadingDiv.appendChild(document.createElement("br"));
+
+    const subheadingAdderBtn = document.createElement("button");
+    subheadingAdderBtn.className = "subheadingadder";
+    subheadingAdderBtn.textContent = "Add Subheading";
+    subheadingAdderBtn.setAttribute("onclick", `addSubheading(${headingCoonter})`);
+
+    dataDiv.appendChild(document.createElement("br"));
+    dataDiv.appendChild(headingInput);
+    dataDiv.appendChild(subheadingDiv);
+    dataDiv.appendChild(document.createElement("br"));
+    dataDiv.appendChild(subheadingAdderBtn);
+
     return 0;
 }
 function addSubheading(heading) {
-    let dataDiv = document.getElementById(`subheadinglistheading${heading}`);
-    ++subheadingCoonter[heading-1];
-    itemCoonter[heading-1].push(1);
-    dataDiv.innerHTML += `<br>
-    <input type="text" id="subheading${subheadingCoonter[heading-1]}heading${heading}" oninput="collectData(false,true)" class="subheading" required placeholder="Subheading ${subheadingCoonter[heading-1]} in Heading ${heading}">
-    <br>
-    <div id="itemlistsubheading${subheadingCoonter[heading-1]}heading${heading}">
-        <textarea id="item1subheading${subheadingCoonter[heading-1]}heading${heading}" oninput="collectData(false,true)" class="item" required placeholder="Item 1 in Subheading ${subheadingCoonter[heading-1]} in Heading ${heading}"></textarea>
-        <br>
-    </div>
-    <button class="itemadder" onclick="addItem(${heading}, ${subheadingCoonter[heading-1]})" onclick="loadData()">Add Item</button>`;
+    const subheadingIndex = ++subheadingCoonter[heading - 1];
+    itemCoonter[heading - 1].push(1);
+
+    const dataDiv = document.getElementById(`subheadinglistheading${heading}`);
+
+    const subheadingInput = document.createElement("input");
+    subheadingInput.type = "text";
+    subheadingInput.id = `subheading${subheadingIndex}heading${heading}`;
+    subheadingInput.className = "subheading";
+    subheadingInput.required = true;
+    subheadingInput.placeholder = `Subheading ${subheadingIndex} in Heading ${heading}`;
+    subheadingInput.setAttribute("oninput", "collectData(false,true)");
+
+    const lineBreak1 = document.createElement("br");
+
+    const itemListDiv = document.createElement("div");
+    itemListDiv.id = `itemlistsubheading${subheadingIndex}heading${heading}`;
+
+    const itemTextarea = document.createElement("textarea");
+    itemTextarea.id = `item1subheading${subheadingIndex}heading${heading}`;
+    itemTextarea.className = "item";
+    itemTextarea.required = true;
+    itemTextarea.placeholder = `Item 1 in Subheading ${subheadingIndex} in Heading ${heading}`;
+    itemTextarea.setAttribute("oninput", "collectData(false,true)");
+
+    const lineBreak2 = document.createElement("br");
+
+    itemListDiv.appendChild(itemTextarea);
+    itemListDiv.appendChild(lineBreak2);
+
+    const itemButton = document.createElement("button");
+    itemButton.className = "itemadder";
+    itemButton.textContent = "Add Item";
+    itemButton.onclick = function () {
+        addItem(heading, subheadingIndex);
+    };
+
+    const lineBreak3 = document.createElement("br");
+
+    dataDiv.appendChild(lineBreak1);
+    dataDiv.appendChild(subheadingInput);
+    dataDiv.appendChild(document.createElement("br"));
+    dataDiv.appendChild(itemListDiv);
+    dataDiv.appendChild(itemButton);
+    dataDiv.appendChild(lineBreak3);
+
     return 0;
 }
 function addItem(heading, subheading) {
-    let dataDiv = document.getElementById(`itemlistsubheading${subheading}heading${heading}`);
-    ++itemCoonter[heading-1][subheading-1];
-    dataDiv.innerHTML += `<textarea id="item${itemCoonter[heading-1][subheading-1]}subheading${subheading}heading${heading}" oninput="collectData(false,true)" class="item" required placeholder="Item ${itemCoonter[heading-1][subheading-1]} in Subheading ${subheading} in Heading ${heading}"></textarea>
-    <br>`;
+    const itemIndex = ++itemCoonter[heading - 1][subheading - 1];
+
+    const itemListDiv = document.getElementById(`itemlistsubheading${subheading}heading${heading}`);
+
+    const newItemTextarea = document.createElement("textarea");
+    newItemTextarea.id = `item${itemIndex}subheading${subheading}heading${heading}`;
+    newItemTextarea.className = "item";
+    newItemTextarea.required = true;
+    newItemTextarea.placeholder = `Item ${itemIndex} in Subheading ${subheading} in Heading ${heading}`;
+    newItemTextarea.setAttribute("oninput", "collectData(false,true)");
+
+    const lineBreak = document.createElement("br");
+
+    itemListDiv.appendChild(newItemTextarea);
+    itemListDiv.appendChild(lineBreak);
+
     return 0;
 }
 function collectData(submit, save) {
@@ -114,6 +202,7 @@ function parseData(title, name, email, subject, headings, subheadings, items) {
         }
     }
     db.collection("users").doc(title).set(parsedData);
+    clearData();
     return 0;
 }
 function saveData(title, name, email, subject, headings, subheadings, items) {
@@ -153,28 +242,52 @@ function loadData() {
     let grabbedItems = JSON.parse(localStorage.getItem('items'));
     let grabbedData = JSON.parse(localStorage.getItem('data'));
     let neededHeadings = grabbedHeadings-headingCoonter;
-    for (let k = 0; k<neededHeadings; k++) {
+    let neededSubheadings = []
+    let neededItems = [];
+    for (let h=0; h<neededHeadings; h++) {
         addHeading();
     }
-    let neededSubheadings = []
-    for (let i=0; i<grabbedSubheading.length; i++) {
-        neededSubheadings.push([]);
+    for (let i=0; i<grabbedHeadings; i++) {
+        neededSubheadings.push([subheadingCoonter[i]-grabbedSubheading[i]]);
     }
-    for (let j=0; j<grabbedSubheading.length; j++) {
-        if (j<subheadingCoonter.length) {
-            neededSubheadings[j] = grabbedSubheading[j] - subheadingCoonter[j]
-        }
-        else {
-            neededSubheadings[j] = grabbedSubheading[j]
+    for (let j = 0; j<grabbedHeadings; j++) {
+        for (let k = 0; k<neededSubheadings[j]; k++) {
+            addSubheading(j+1);
         }
     }
+    for (let l=0; l<grabbedHeadings; l++) {
+        for (let m=0; m<grabbedItems[l]; m++) {
+            neededItems.push([itemCoonter[l][m]-grabbedItems[l][m]]);
+        }
+    }
+    for (let n=0; n<grabbedHeadings; n++) {
+        for (let o=0; o<grabbedSubheading[n]; o++) {
+            for (let p=0; p<neededItems[n][o]; p++) {
+                addItem(n+1,o+1);
+            }
+        }
+    }
+    for (let q=0; q<headingCoonter; q++) {
+        document.getElementById(`heading${q+1}`).value = grabbedData.data[`heading${q+1}`].name;
+        for (let r=0; r<subheadingCoonter[q]; r++) {
+            document.getElementById(`subheading${r+1}heading${q+1}`).value = grabbedData.data[`heading${q+1}`][`subheading${r+1}`].name;
+            for (let s=0; s<itemCoonter[q][r]; s++) {
+                document.getElementById(`item${s+1}subheading${r+1}heading${q+1}`).value = grabbedData.data[`heading${q+1}`][`subheading${r+1}`][`item${s+1}`];
+            }
+        }
+    }
+    document.getElementById("email").value = grabbedData.email;
+    document.getElementById("name").value = grabbedData.name;
+    document.getElementById("subject").value = grabbedData.subject;
+    document.getElementById("title").value = grabbedData.title;
     console.log(grabbedHeadings);
     console.log(grabbedSubheading);
 }
 function clearData() {
-    localStorage.removeItem('data')
-    localStorage.removeItem('headings')
-    localStorage.removeItem('subheadings')
-    localStorage.removeItem('items')
+    localStorage.removeItem('data');
+    localStorage.removeItem('headings');
+    localStorage.removeItem('subheadings');
+    localStorage.removeItem('items');
+    location.reload();
 }
 window.onload = setTimeout(function() {loadData();}, 100)
