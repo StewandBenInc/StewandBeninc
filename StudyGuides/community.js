@@ -207,6 +207,7 @@ function parseData(title, name, email, subject, headings, subheadings, items) {
 }
 function saveData(title, name, email, subject, headings, subheadings, items) {
     let parsedData = {
+        title: title,
         email: email,
         name: name,
         subject: subject,
