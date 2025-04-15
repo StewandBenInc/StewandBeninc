@@ -202,7 +202,7 @@ function parseData(title, name, email, subject, headings, subheadings, items) {
         }
     }
     db.collection("users").doc(title).set(parsedData);
-    clearData();
+    setTimeout(function() {clearData();}, 1000)
     return 0;
 }
 function saveData(title, name, email, subject, headings, subheadings, items) {
@@ -213,19 +213,19 @@ function saveData(title, name, email, subject, headings, subheadings, items) {
         subject: subject,
         data:{}
     }
-    for (let i = 1; i <= headingCoonter; i++) {
-        let headingKey = `heading${i}`;
+    for (let a = 1; a <= headingCoonter; a++) {
+        let headingKey = `heading${a}`;
         parsedData.data[headingKey] = {
-            name: headings[i-1]
+            name: headings[a-1]
         };
-        for (let j = 1; j <= subheadingCoonter[i - 1]; j++) {
-            let subheadingKey = `subheading${j}`;
+        for (let b = 1; b <= subheadingCoonter[a - 1]; b++) {
+            let subheadingKey = `subheading${b}`;
             parsedData.data[headingKey][subheadingKey] = {
-                name: subheadings[i-1][j-1]
+                name: subheadings[a-1][b-1]
             };
-            for (let k = 1; k <= itemCoonter[i - 1][j - 1]; k++) {
-                let itemKey = `item${k}`;
-                parsedData.data[headingKey][subheadingKey][itemKey] = items[i-1][j-1][k-1];
+            for (let c = 1; c <= itemCoonter[a - 1][b - 1]; c++) {
+                let itemKey = `item${c}`;
+                parsedData.data[headingKey][subheadingKey][itemKey] = items[a-1][b-1][c-1];
             };
         }
     }
@@ -242,47 +242,50 @@ function loadData() {
     let grabbedSubheading = JSON.parse(localStorage.getItem('subheadings'));
     let grabbedItems = JSON.parse(localStorage.getItem('items'));
     let grabbedData = JSON.parse(localStorage.getItem('data'));
+
+    // Dealing with Headings
     let neededHeadings = grabbedHeadings-headingCoonter;
-    let neededSubheadings = []
-    let neededItems = [];
-    for (let h=0; h<neededHeadings; h++) {
+    for (let i=0; i<neededHeadings; i++) {
         addHeading();
     }
-    for (let i=0; i<grabbedHeadings; i++) {
-        neededSubheadings.push([subheadingCoonter[i]-grabbedSubheading[i]]);
-    }
-    for (let j = 0; j<grabbedHeadings; j++) {
-        for (let k = 0; k<neededSubheadings[j]; k++) {
+
+    // Dealing with Subheadings
+    let neededSubheadings = 0;
+    for (let j=0; j<headingCoonter; j++) {
+        neededSubheadings = grabbedSubheading[j]-subheadingCoonter[j];
+        for (let k=0; k<neededSubheadings; k++) {
             addSubheading(j+1);
         }
     }
-    for (let l=0; l<grabbedHeadings; l++) {
-        for (let m=0; m<grabbedItems[l]; m++) {
-            neededItems.push([itemCoonter[l][m]-grabbedItems[l][m]]);
-        }
-    }
-    for (let n=0; n<grabbedHeadings; n++) {
-        for (let o=0; o<grabbedSubheading[n]; o++) {
-            for (let p=0; p<neededItems[n][o]; p++) {
-                addItem(n+1,o+1);
+
+    // Dealing with Items
+    let neededItems = 0;
+    for (let l=0; l<headingCoonter; l++) {
+        for (let m=0; m<subheadingCoonter[l]; m++) {
+            neededItems = grabbedItems[l][m]-itemCoonter[l][m];
+            for (let n=0; n<neededItems; n++) {
+                addItem(l+1, m+1);
             }
         }
     }
-    for (let q=0; q<headingCoonter; q++) {
-        document.getElementById(`heading${q+1}`).value = grabbedData.data[`heading${q+1}`].name;
-        for (let r=0; r<subheadingCoonter[q]; r++) {
-            document.getElementById(`subheading${r+1}heading${q+1}`).value = grabbedData.data[`heading${q+1}`][`subheading${r+1}`].name;
-            for (let s=0; s<itemCoonter[q][r]; s++) {
-                document.getElementById(`item${s+1}subheading${r+1}heading${q+1}`).value = grabbedData.data[`heading${q+1}`][`subheading${r+1}`][`item${s+1}`];
-            }
-        }
-    }
+
+    // Dealing with other fields
     document.getElementById("email").value = grabbedData.email;
     document.getElementById("name").value = grabbedData.name;
     document.getElementById("subject").value = grabbedData.subject;
     document.getElementById("title").value = grabbedData.title;
-    console.log(grabbedHeadings);
-    console.log(grabbedSubheading);
+
+    // Dealing with data
+    for(let o=1; o<=headingCoonter; o++) {
+        document.getElementById(`heading${o}`).value = grabbedData.data[`heading${o}`].name;
+        for (let p=1; p<=subheadingCoonter[o-1]; p++) {
+            document.getElementById(`subheading${p}heading${o}`).value = grabbedData.data[`heading${o}`][`subheading${p}`].name;
+            for (let q=1; q<=itemCoonter[o-1][p-1]; q++) {
+                document.getElementById(`item${q}subheading${p}heading${o}`).value = grabbedData.data[`heading${o}`][`subheading${p}`][`item${q}`];
+            }
+        }
+    }
+    console.log("loaded data from local storage");
 }
 function clearData() {
     localStorage.removeItem('data');
