@@ -37,10 +37,8 @@ async function loadGuide() {
         document.getElementById("name").innerHTML = `${doc.id} by ${data.name}`;
         let realData = data.data;
         for (let heading in realData) {
-            console.log(heading);
             document.getElementById("guide-content").innerHTML += `<ul class="dropdown"><h2 class="dropdown-toggle">${realData[heading].name}</h2><div class="dropdown-content" id="${heading}">`;
             for (let subheading in realData[heading]["subheadings"]) {
-                console.log(subheading);
                 document.getElementById(`${heading}`).innerHTML += `<h3>${realData[heading]["subheadings"][subheading].name}</h3>`;
                 for (let item in realData[heading]["subheadings"][subheading]["items"]) {
                     document.getElementById(`${heading}`).innerHTML += `<li>${realData[heading]["subheadings"][subheading]["items"][item]}</li>`;
@@ -52,7 +50,15 @@ async function loadGuide() {
     }
 } 
 
-window.onload = function() {
-    getSubmissions()
-    loadGuide()
+window.onload = async function() {
+    getSubmissions();
+    await loadGuide();
+    
+    const dropdowns = document.querySelectorAll(".dropdown");
+    dropdowns.forEach(dropdown => {
+        dropdown.addEventListener("click", function() {
+            this.classList.toggle("active");
+            console.log(dropdown);
+        });
+    });
 };

@@ -67,7 +67,7 @@ ul {
 ul.dropdown li {
     margin: 8px 0;
     padding: 5px;
-    border-left: 4px solid #d32f2f;
+    border-left: 4px solid rgb(195, 22, 195);
     background-color: #f1f1f1;
     padding-left: 10px;
     border-radius: 4px;

@@ -296,4 +296,5 @@ function clearData() {
     localStorage.removeItem('items');
     location.reload();
 }
+
 window.onload = setTimeout(function() {loadData();}, 100)
