@@ -188,16 +188,18 @@ function parseData(title, name, email, subject, headings, subheadings, items) {
     for (let i = 1; i <= headingCoonter; i++) {
         let headingKey = `heading${i}`;
         parsedData.data[headingKey] = {
-            name: headings[i-1]
+            name: headings[i-1],
+            subheadings: {}
         };
         for (let j = 1; j <= subheadingCoonter[i - 1]; j++) {
             let subheadingKey = `subheading${j}`;
-            parsedData.data[headingKey][subheadingKey] = {
-                name: subheadings[i-1][j-1]
+            parsedData.data[headingKey]["subheadings"][subheadingKey] = {
+                name: subheadings[i-1][j-1],
+                items: {}
             };
             for (let k = 1; k <= itemCoonter[i - 1][j - 1]; k++) {
                 let itemKey = `item${k}`;
-                parsedData.data[headingKey][subheadingKey][itemKey] = items[i-1][j-1][k-1];
+                parsedData.data[headingKey]["subheadings"][subheadingKey]["items"][itemKey] = items[i-1][j-1][k-1];
             };
         }
     }
