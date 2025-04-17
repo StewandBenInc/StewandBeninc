@@ -1,0 +1,35 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+.footer {
+    background-color: #424242;
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.footerlist {
+    list-style-type: none;
+    display: inline-block;
+    padding: 20px;
+}
+
+.misc {
+    text-align: left;
+}
+
+.submitions {
+    text-align: center;
+}
+
+.importantlinks {
+    text-align: right;
+}
+
+.footerlink {
+    color: #ffffff;
+    text-decoration: none;
+}
