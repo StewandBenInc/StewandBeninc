@@ -20,7 +20,7 @@ function getSubmissions() {
         .then(snapshot => {
         snapshot.forEach(doc => {
             console.log(doc);
-            list.innerHTML += `<li><a href="comguidetemp.html?name=${doc.id}"><h3>${doc.id} by, ${doc.data().name}</h3></a></li>`;
+            list.innerHTML += `<li><a href="comguidetemp.html?name=${doc.id}"><h3>${doc.id} by, ${doc.data().name} Subject: ${doc.data().subject}</h3></a></li>`;
         });
         })
         .catch(error => {

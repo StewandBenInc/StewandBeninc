@@ -8,8 +8,23 @@
         <link rel="stylesheet" href="/style.css">
         <script src="/navbar.js"></script>
         <script src="/footer.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/10.0.0/firebase-app-compat.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/10.0.0/firebase-firestore-compat.js"></script>
+        <script src="request.js"></script>
     </head>
     <body>
-        <p id="top">oh lord more submitions oh no</p>
+        <div class="mainbody" id="top">
+            <h1>Requests</h1>
+            <p>Submit all your requests for the website here.</p>
+            <br>
+            <input type="text" id="name" placeholder="Enter your name here">
+            <br>
+            <input type="text" id="email" placeholder="Enter your email here">
+            <br>
+            <textarea type="text" id="request" placeholder="Enter your request here"></textarea>
+            <br>
+            <button id="submit" onclick="submitRequest()">Submit</button>
+            <br>
+        </div>
     </body>
 </html>

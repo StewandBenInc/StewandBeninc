@@ -8,8 +8,23 @@
         <link rel="stylesheet" href="/style.css">
         <script src="/navbar.js"></script>
         <script src="/footer.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/10.0.0/firebase-app-compat.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/10.0.0/firebase-firestore-compat.js"></script>
+        <script src="submitgame.js"></script>
     </head>
     <body>
-        <p id="top">oh lord even more submitions oh no</p>
+        <div class="mainbody" id="top">
+            <h1>Game Requests</h1>
+            <p>Submit your game requests here. If we like your idea, we will contact you.</p>
+            <br>
+            <input type="text" id="name" placeholder="Enter your name here">
+            <br>
+            <input type="text" id="email" placeholder="Enter your email here">
+            <br>
+            <textarea type="text" id="gameRequest" placeholder="Enter your game request here, with as much detail as possible"></textarea>
+            <br>
+            <button id="submit" onclick="submitGameRequest()">Submit</button>
+            <br>
+        </div>
     </body>
 </html>
