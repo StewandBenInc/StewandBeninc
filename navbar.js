@@ -6,6 +6,11 @@ document.addEventListener("DOMContentLoaded", () => {
             document.body.insertAdjacentHTML("afterbegin", data);
             attachNavbarEvents(); // Reattach event listeners after inserting the HTML
         });
+    fetch("/cookie.html")
+        .then(response => response.text())
+        .then(data => {
+            document.body.insertAdjacentHTML("beforeend", data);
+        });
 });
 
 function attachNavbarEvents() {
@@ -32,5 +37,38 @@ function attachNavbarEvents() {
             toggleIcon.className = 'menuIcon';
         }
     });
+}
+
+function setCookie(name, value, days) {
+    const d = new Date();
+    d.setTime(d.getTime() + (days*24*60*60*1000));
+    document.cookie = name + "=" + value + ";expires=" + d.toUTCString() + ";path=/";
+}
+
+function getCookie(name) {
+    const cookies = document.cookie.split(';');
+    for(let cookie of cookies) {
+        if (cookie.trim().startsWith(name + "=")) {
+            return cookie.trim().substring((name + "=").length);
+        }
+    }
+    return null;
+}
+
+function acceptCookies() {
+    setCookie("cookiesAccepted", "true", 365);
+    document.getElementById("cookie-consent").style.display = "none";
+}
+
+function denyCookies() {
+    alert("You denied cookies. This page will now close.");
+    window.location.href = "https://www.google.com";
+}
+
+window.onload = function() {
+    if (!getCookie("cookiesAccepted")) {
+        document.getElementById("cookie-consent").style.display = "block";
+    }
+    console.log("ran")
 }
 
