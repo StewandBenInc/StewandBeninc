@@ -19,11 +19,6 @@ fetch("master.json")
             document.getElementById("definition").textContent = `${def}`;
             document.getElementById("sentence").textContent = `${sentence}`;
             document.getElementById("title").textContent = `©Stew and Ben inc.®™ | Dictionary | ${word}`;
-
-            // Dynamically set image
-            let img = document.getElementById("wordImage");
-            img.src = `Photos/${word}.png`; // Assumes images are named exactly like words
-            img.style.display = "block"; // Show image if found
         } else{
             document.body.innerHTML = "<h1>Word not found!</h1><a href='index.html'>Back</a>";
         }
