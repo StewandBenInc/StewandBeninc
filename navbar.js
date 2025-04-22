@@ -4,6 +4,16 @@ document.addEventListener("DOMContentLoaded", () => {
         .then(response => response.text())
         .then(data => {
             document.body.insertAdjacentHTML("afterbegin", data);
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                let cookie = cookies[i].trim();
+                if (cookie.startsWith("username" + '=')) {
+                    if(cookie.substring(9)) {
+                        document.getElementById('signin').style.display = "none";
+                        document.getElementById('signout').style.display = "inline-block";
+                    }
+                }
+            }
             attachNavbarEvents(); // Reattach event listeners after inserting the HTML
         });
     fetch("/cookie.html")
@@ -72,3 +82,8 @@ window.onload = function() {
     console.log("ran")
 }
 
+function signOut() {
+    document.cookie = "username=;";
+    alert("You have been signed out");
+    location.reload();
+}
