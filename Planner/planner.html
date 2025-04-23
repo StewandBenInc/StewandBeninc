@@ -17,10 +17,46 @@
   </head>
   <body>
     <div id='calendar'></div>
-    <form>
-      Class: <input type="text" id="fname" size="20" name="fname"><br>
-      Start Time: <input type="time" id="age" size="20" name="age"><br>
-      Day: <input type="day" id="email" size="20" name="mail"><br><br>
-      <input type="submit" value="Submit"> 
+    <form onsubmit="return getClass()" style="font-family: Arial, sans-serif; font-size: 14px; line-height: 2;">
+      <label for="class">Subject :</label>
+      <input type="text" id="class" size="20" name="fname" style="margin-bottom: 10px;"><br>
+    
+      <label for="time">Start Time:</label>
+      <input type="time" id="time" size="20" name="age" style="margin-bottom: 10px;"><br>
+    
+      <label for="day">Day:</label>
+      <select id="day" style="padding: 6px 10px; font-size: 14px; border: 1px solid #ccc; border-radius: 4px; margin-bottom: 10px;">
+        <option value="monday">Monday</option>
+        <option value="tuesday">Tuesday</option>
+        <option value="wednesday">Wednesday</option>
+        <option value="thursday">Thursday</option>
+        <option value="friday">Friday</option>
+        <option value="saturday">Saturday</option>
+        <option value="sunday">Sunday</option>
+      </select>
+      <br><br>
+    
+      <input type="submit" value="Submit" style="padding: 6px 12px; font-size: 14px; border-radius: 4px; border: 1px solid #ccc; cursor: pointer;"> 
+    
+    </form>
+      <script>
+let subject
+let time
+let day
+const classes = [];
+        function getClass() {
+          let subject = document.getElementById("class").value;
+          let time = document.getElementById("time").value;
+          let day = document.getElementById("day").value;
+          submitOK = "true";
+          console.log(subject)
+        console.log(time)
+        console.log(day)
+classes.push([subject, time, day])
+console.log(classes.toString)
+        }
+        
+        </script>
+        
   </body>
 </html>
