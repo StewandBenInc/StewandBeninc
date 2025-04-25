@@ -42,8 +42,8 @@
     </form>
     <h3>Add Free Time</h3>
     <form onsubmit="return getClass()" style="font-family: Arial, sans-serif; font-size: 14px; line-height: 2;">
-      <label for="class">Subject :</label>
-      <input type="text" id="class" size="20" name="fname" style="margin-bottom: 10px;"><br>
+      <label for="class">Name of Free Period:</label>
+      <input type="text" id="freeName" size="20" name="fname" style="margin-bottom: 10px;"><br>
     
       <label for="freeTimeStart">Start Time:</label>
       <input type="time" id="freeTimeStart" size="20" name="age" style="margin-bottom: 10px;"><br>
@@ -82,7 +82,23 @@ classes.push([subject, time, day])
 classString = classes.toString()
 console.log(classString)
         }
-        
+let freeTimeEnd
+let freeTimeStart
+let freeDay
+const frees = [];
+        function getClass() {
+          let freeName = document.getElementById("freeName").value;
+          let freeTimeStart = document.getElementById("freeTimeStart").value;
+          let freeTimeEnd = document.getElementById("freeTimeEnd").value;
+          let freeDay = document.getElementById("classDay").value;
+          submitOK = "true";
+          console.log(subject)
+        console.log(classTime)
+        console.log(classDay)
+classes.push([subject, time, day])
+classString = classes.toString()
+console.log(classString)
+        }
         </script>
         
   </body>
