@@ -53,7 +53,7 @@ async function login() {
     try {
         const data = await db.collection("accounts").doc(username).get()
         if (username === data.id && password === data.data().password) {
-            document.cookie = `username=${username}; expires=${futureDate.toUTCString()}; path=/`;
+            document.cookie = `username=${username};`;
             alert("Login successful");
             window.location.href = "/index.html";
         } else {
