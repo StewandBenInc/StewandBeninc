@@ -33,7 +33,9 @@ function submit() {
         password: document.getElementById('password').value,
         grade: document.getElementById('grade').value,
         calendar: document.getElementById('calendarinput').value,
-        email: document.getElementById('email').value
+        email: document.getElementById('email').value,
+        admin: false,
+        mvp: false
     };
 
     db.collection("accounts").doc(document.getElementById('username').value).set(data)
