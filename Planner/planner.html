@@ -1,32 +1,35 @@
 <!DOCTYPE html>
-<html lang='en'>
-  <head>
-    <meta charset='utf-8' />
-    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.17/index.global.min.js'></script>
-    <script>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Homework Class Picker</title>
+  <link rel="stylesheet" href="planner.css">
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.17/index.global.min.js"></script>
+  <script defer src="planner.js"></script>
+</head>
 
-      document.addEventListener('DOMContentLoaded', function() {
-        var calendarEl = document.getElementById('calendar');
-        var calendar = new FullCalendar.Calendar(calendarEl, {
-          initialView: 'dayGridMonth'
-        });
-        calendar.render();
-      });
+<body>
+<script src="/navbar.js"></script>
+  <div class="page-wrapper">
+    <div class="left-panel">
+      <div id="calendar"></div>
+    </div>
 
-    </script>
-  </head>
-  <body>
-    <div id='calendar'></div>
-    <h3>Add a Class</h3>
-    <form onsubmit="return getClass()" style="font-family: Arial, sans-serif; font-size: 14px; line-height: 2;">
-      <label for="class">Subject :</label>
-      <input type="text" id="class" size="20" name="fname" style="margin-bottom: 10px;"><br>
-    
-      <label for="classTime">Start Time:</label>
-      <input type="time" id="classTime" size="20" name="age" style="margin-bottom: 10px;"><br>
-    
-      <label for="classDay">Day:</label>
-      <select id="classDay" style="padding: 6px 10px; font-size: 14px; border: 1px solid #ccc; border-radius: 4px; margin-bottom: 10px;">
+    <div class="right-panel">
+      <h3>Assignments</h3>
+      <ul id="assignmentList"></ul>
+    </div>
+  </div>
+
+  <div class="forms-wrapper">
+    <form onsubmit="return addClass()">
+      <h4>Add Class</h4>
+      <label>Subject :</label>
+      <input type="text" id="class"><br>
+      <label>Start Time:</label>
+      <input type="time" id="classTime"><br>
+      <label>Day(s):</label>
+      <select id="classDay" multiple size="7">
         <option value="monday">Monday</option>
         <option value="tuesday">Tuesday</option>
         <option value="wednesday">Wednesday</option>
@@ -34,24 +37,20 @@
         <option value="friday">Friday</option>
         <option value="saturday">Saturday</option>
         <option value="sunday">Sunday</option>
-      </select>
-      <br><br>
-    
-      <input type="submit" value="Submit" style="padding: 6px 12px; font-size: 14px; border-radius: 4px; border: 1px solid #ccc; cursor: pointer;"> 
-    
+      </select><br><br>
+      <input type="submit" value="Add Class">
     </form>
-    <h3>Add Free Time</h3>
-    <form onsubmit="return getClass()" style="font-family: Arial, sans-serif; font-size: 14px; line-height: 2;">
-      <label for="class">Name of Free Period:</label>
-      <input type="text" id="freeName" size="20" name="fname" style="margin-bottom: 10px;"><br>
-    
-      <label for="freeTimeStart">Start Time:</label>
-      <input type="time" id="freeTimeStart" size="20" name="age" style="margin-bottom: 10px;"><br>
-      <label for="freeTimeEnd">End Time:</label>
-      <input type="time" id="freeTimeEnd" size="20" name="age" style="margin-bottom: 10px;"><br>
-    
-      <label for="freeDay">Day:</label>
-      <select id="freeDay" style="padding: 6px 10px; font-size: 14px; border: 1px solid #ccc; border-radius: 4px; margin-bottom: 10px;">
+
+    <form onsubmit="return addFreeTime()">
+      <h4>Add Free Time</h4>
+      <label>Name of Free Period:</label>
+      <input type="text" id="freeName"><br>
+      <label>Start Time:</label>
+      <input type="time" id="freeTimeStart"><br>
+      <label>End Time:</label>
+      <input type="time" id="freeTimeEnd"><br>
+      <label>Day:</label>
+      <select id="freeDay">
         <option value="monday">Monday</option>
         <option value="tuesday">Tuesday</option>
         <option value="wednesday">Wednesday</option>
@@ -59,47 +58,25 @@
         <option value="friday">Friday</option>
         <option value="saturday">Saturday</option>
         <option value="sunday">Sunday</option>
-      </select>
-      <br><br>
-    
-      <input type="submit" value="Submit" style="padding: 6px 12px; font-size: 14px; border-radius: 4px; border: 1px solid #ccc; cursor: pointer;"> 
-    
+      </select><br><br>
+      <input type="submit" value="Add Free Time">
     </form>
-      <script>
-let subject
-let classTime
-let classDay
-const classes = [];
-        function getClass() {
-          let subject = document.getElementById("class").value;
-          let classTime = document.getElementById("classTime").value;
-          let classDay = document.getElementById("classDay").value;
-          submitOK = "true";
-          console.log(subject)
-        console.log(classTime)
-        console.log(classDay)
-classes.push([subject, time, day])
-classString = classes.toString()
-console.log(classString)
-        }
-let freeTimeEnd
-let freeTimeStart
-let freeDay
-const frees = [];
-        function getClass() {
-          let freeName = document.getElementById("freeName").value;
-          let freeTimeStart = document.getElementById("freeTimeStart").value;
-          let freeTimeEnd = document.getElementById("freeTimeEnd").value;
-          let freeDay = document.getElementById("classDay").value;
-          submitOK = "true";
-          console.log(subject)
-        console.log(classTime)
-        console.log(classDay)
-classes.push([subject, time, day])
-classString = classes.toString()
-console.log(classString)
-        }
-        </script>
-        
-  </body>
+
+    <form onsubmit="return addHomework()">
+      <h4>Add Homework/Task</h4>
+      <label>Name of Task:</label>
+      <input type="text" id="taskName"><br>
+      <label>Related Class:</label>
+      <select id="taskClass"></select><br>
+      <label>Due Date:</label>
+      <input type="date" id="taskDue"><br>
+      <label>Estimated Time (minutes):</label>
+      <input type="number" id="taskTime" min="1"><br>
+      <label>Priority:</label>
+      <input type="checkbox" id="taskPriority"><br><br>
+      <input type="submit" value="Add Homework">
+    </form>
+  </div>
+
+</body>
 </html>
