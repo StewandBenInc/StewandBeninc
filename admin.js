@@ -1,0 +1,98 @@
+const firebaseConfig = {
+    apiKey: "AIzaSyD3TekvWYk7yGLcmX3P6L-UF3Y9BrF7T94",
+    authDomain: "stewandbeninc-d4f92.firebaseapp.com",
+    projectId: "stewandbeninc-d4f92",
+    storageBucket: "stewandbeninc-d4f92.firebasestorage.app",
+    messagingSenderId: "619253654409",
+    appId: "1:619253654409:web:2442006d870a0cdff1b758",
+    measurementId: "G-SVWPC4TKZK"
+};
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+
+let comSubmissionList = document.getElementById('comsub');
+let gameRequestList = document.getElementById('gamerequest');
+let userList = document.getElementById('users');
+
+async function removeData(id, area) {
+    db.collection(area).doc(id).delete().then(() => {
+        console.log("Document successfully deleted!");
+        location.reload();
+    });
+}
+
+async function fetchRequests() {
+    let requestList = document.getElementById('request');
+    const snapshot = await db.collection("requests").get();
+    snapshot.forEach(doc => {
+        const data = doc.data();
+        let li = `<li>${data.name} (${data.email}): ${data.request} <span onclick="removeData('${doc.id}', 'requests')">Remove?</span></li>`;
+        requestList.innerHTML += li;
+    });
+}
+
+async function fetchComSubmissions() {
+    let requestList = document.getElementById('comsub');
+    const snapshot = await db.collection("users").get();
+    snapshot.forEach(doc => {
+        const data = doc.data();
+        let li = `<li><a href="/StudyGuides/comguidetemp.html?name=${doc.id}">${doc.id} by, ${data.name} (${data.email})</a> <span onclick="removeData('${doc.id}', 'users')">Remove?</span></li>`;
+        requestList.innerHTML += li;
+    });
+}
+
+async function fetchGameRequests() {
+    let requestList = document.getElementById('gamerequest');
+    const snapshot = await db.collection("gameRequests").get();
+    snapshot.forEach(doc => {
+        const data = doc.data();
+        let li = `<li>${data.name} (${data.email}): ${data.request} <span onclick="removeData('${doc.id}', 'gameRequests')">Remove?</span></li>`;
+        requestList.innerHTML += li;
+    });
+}
+
+async function fetchUsers() {
+    let requestList = document.getElementById('users');
+    const snapshot = await db.collection("accounts").get();
+    snapshot.forEach(doc => {
+        const data = doc.data();
+        let li = `<li>${doc.id}: ${data.name} (${data.email}) in grade: ${data.grade}.`;
+        if (data.admin) {
+            li += ` Is an admin.`;
+        } if(data.mvp) {
+            li += ` Is an MVP.`;
+        }
+        li += ` <span onclick="removeData('${doc.id}', 'accounts')">Remove?</span></li>`;
+        requestList.innerHTML += li;
+    });
+}
+
+function checkAdmin() {
+    const cookies = document.cookie.split(';');
+    let done = false;
+    for (let i = 0; i < cookies.length; i++) {
+        let cookie = cookies[i].trim();
+        if (cookie.startsWith("admin" + '=')) {
+            if(cookie.substring(6) === "true") {
+                console.log("Admin");
+                done = true;
+            } else {
+                window.location.href = "/notallowed.html";
+                console.log("Not an admin");
+            }
+            console.log("Admin cookie found");
+        }
+    }
+    if (!done) {
+        window.location.href = "/notallowed.html";
+        console.log("No admin cookie found");
+    }
+}
+
+window.onload = async function() {
+    checkAdmin();
+    await fetchRequests();
+    await fetchComSubmissions();
+    await fetchGameRequests();
+    await fetchUsers();
+}

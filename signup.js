@@ -56,6 +56,16 @@ async function login() {
         const data = await db.collection("accounts").doc(username).get()
         if (username === data.id && password === data.data().password) {
             document.cookie = `username=${username};`;
+            if (data.data().admin) {
+                document.cookie = `admin=true;`;
+            } else {
+                document.cookie = `admin=false;`;
+            }
+            if (data.data().mvp) {
+                document.cookie = `mvp=true;`;
+            } else {
+                document.cookie = `mvp=false;`;
+            }
             alert("Login successful");
             window.location.href = "/index.html";
         } else {

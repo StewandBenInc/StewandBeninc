@@ -10,7 +10,7 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
-function submitRequest() {
+function submitGameRequest() {
     const requestData = {
         name: document.getElementById('name').value,
         email: document.getElementById('email').value,

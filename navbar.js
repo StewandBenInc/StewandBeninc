@@ -13,6 +13,11 @@ document.addEventListener("DOMContentLoaded", () => {
                         document.getElementById('signout').style.display = "inline-block";
                     }
                 }
+                if (cookie.startsWith("admin" + '=')) {
+                    if(cookie.substring(6)) {
+                        document.getElementById('admin').style.display = "inline-block";
+                    }
+                }
             }
             attachNavbarEvents(); // Reattach event listeners after inserting the HTML
         });
