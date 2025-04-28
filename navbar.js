@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (cookie.startsWith("username" + '=')) {
                     if(cookie.substring(9)) {
                         document.getElementById('signin').style.display = "none";
-                        document.getElementById('signout').style.display = "inline-block";
+                        document.getElementById('dashboard').style.display = "inline-block";
                     }
                 }
                 if (cookie.startsWith("admin" + '=')) {
@@ -85,10 +85,4 @@ window.onload = function() {
         document.getElementById("cookie-consent").style.display = "block";
     }
     console.log("ran")
-}
-
-function signOut() {
-    document.cookie = "username=;";
-    alert("You have been signed out");
-    location.reload();
 }
