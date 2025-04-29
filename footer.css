@@ -17,15 +17,15 @@ html, body {
     padding: 20px;
 }
 
-.misc {
+.left {
     text-align: left;
 }
 
-.submitions {
+.middle {
     text-align: center;
 }
 
-.importantlinks {
+.right {
     text-align: right;
 }
 
