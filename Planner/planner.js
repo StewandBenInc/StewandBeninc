@@ -6,8 +6,8 @@ const scheduledTasks = [];
 
 const schedule = [];
 
-document.addEventListener('DOMContentLoaded', function() {
-  let calendarEl = document.getElementById('calendar');
+document.addEventListener('DOMContentLoaded', () => {
+  const calendarEl = document.getElementById('calendar');
   calendar = new FullCalendar.Calendar(calendarEl, {
     initialView: 'dayGridMonth'
   });
@@ -15,8 +15,8 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function parseTimeString(timeStr) {
-  const minutes = parseInt(timeStr);
-  if (isNaN(minutes)) return 0;
+  const minutes = Number.parseInt(timeStr);
+  if (Number.isNaN(minutes)) return 0;
   return minutes;
 }
 
@@ -28,6 +28,7 @@ function addClass() {
     alert('Please fill all class fields');
     return false;
   }
+  // biome-ignore lint/complexity/noForEach: <explanation>
   days.forEach(day => {
     classes.push([subject, classTime, day]);
     schedule.push({ type: 'Class', name: subject, day: day, time: classTime });
