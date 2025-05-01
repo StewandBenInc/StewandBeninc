@@ -1,8 +1,9 @@
 document.addEventListener("DOMContentLoaded", () => {
     const dropdowns = document.querySelectorAll(".dropdown-toggle");
 
+    // biome-ignore lint/complexity/noForEach: <explanation>
     dropdowns.forEach(toggle => {
-        toggle.addEventListener("click", function() {
+        toggle.addEventListener("click", () => {
             const dropdown = toggle.closest(".dropdown");
             dropdown.classList.toggle("active");
 
