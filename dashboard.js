@@ -185,7 +185,7 @@ async function calChange() {
     }
 }
 
-window.onload = async function() {
+window.onload = async () => {
     checkSignIn();
     await fillIn();
 }
