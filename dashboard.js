@@ -75,6 +75,7 @@ function signOut() {
 }
 
 async function deleteAccount() {
+    confirm("Are you sure you want to delete your account? This action cannot be undone.");
     const cookies = document.cookie.split(';');
     for (let i = 0; i < cookies.length; i++) {
         let cookie = cookies[i].trim();
