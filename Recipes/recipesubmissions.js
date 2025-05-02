@@ -47,12 +47,12 @@ async function loadGuide() {
 
         const realData = data.data;
         for (const heading in realData) {
-            document.getElementById("guide-content").innerHTML += `<ul class="dropdown"><h2 class="dropdown-toggle">Dish: ${realData[heading].name}</h2><div class="dropdown-content" id="${heading}">`;
+            document.getElementById("guide-content").innerHTML += `<ul class="dropdown"><h2 class="dropdown-toggle"> ${realData[heading].name}</h2><div class="dropdown-content" id="${heading}">`;
             for (const subheading in realData[heading].subheadings) {
                 const subheadingData = realData[heading].subheadings[subheading];
-                document.getElementById(heading).innerHTML += "<h3>Part: " + subheadingData.name + "</h3>";
+                document.getElementById(heading).innerHTML += `<h3>${subheadingData.name}</h3>`;
                 for (const item in subheadingData.items) {
-                    document.getElementById(heading).innerHTML += "<li>Step: " + subheadingData.items[item] + "</li>";
+                    document.getElementById(heading).innerHTML += "<li>" + subheadingData.items[item] + "</li>";
                 }
             }
             document.getElementById("guide-content").innerHTML += "</div></ul>";

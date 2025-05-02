@@ -50,6 +50,15 @@ async function fetchGameRequests() {
         requestList.innerHTML += li;
     });
 }
+async function fetchRecipes() {
+    let requestList = document.getElementById('recipes');
+    const snapshot = await db.collection("recipes").get();
+    snapshot.forEach(doc => {
+        const data = doc.data();
+        let li = `<li>${data.name} (${data.email}): ${data.request} <span onclick="removeData('${doc.id}', 'recipes')">Remove?</span></li>`;
+        requestList.innerHTML += li;
+    });
+}
 
 async function fetchUsers() {
     let requestList = document.getElementById('users');
