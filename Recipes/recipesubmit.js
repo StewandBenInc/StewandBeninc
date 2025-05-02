@@ -1,6 +1,6 @@
-let dishCoonter = 1;
-let partCoonter = [1];
-let stepCoonter = [[1]];
+let headingCoonter = 1;
+let subheadingCoonter = [1];
+let itemCoonter = [[1]];
 
 const firebaseConfig = {
     apiKey: "AIzaSyD3TekvWYk7yGLcmX3P6L-UF3Y9BrF7T94",
@@ -14,170 +14,170 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
-function adddish() {
-    let dataDiv = document.getElementById("dishs");
-    ++dishCoonter;
-    partCoonter.push(1);
-    stepCoonter.push([1]);
+function addHeading() {
+    let dataDiv = document.getElementById("headings");
+    ++headingCoonter;
+    subheadingCoonter.push(1);
+    itemCoonter.push([1]);
 
-    const dishInput = document.createElement("input");
-    dishInput.type = "text";
-    dishInput.id = `dish${dishCoonter}`;
-    dishInput.className = "dish";
-    dishInput.required = true;
-    dishInput.placeholder = `dish ${dishCoonter}`;
-    dishInput.setAttribute("oninput", "collectData(false,true)");
+    const headingInput = document.createElement("input");
+    headingInput.type = "text";
+    headingInput.id = `heading${headingCoonter}`;
+    headingInput.className = "heading";
+    headingInput.required = true;
+    headingInput.placeholder = `Heading ${headingCoonter}`;
+    headingInput.setAttribute("oninput", "collectData(false,true)");
 
-    const partDiv = document.createElement("div");
-    partDiv.id = `partlistdish${dishCoonter}`;
+    const subheadingDiv = document.createElement("div");
+    subheadingDiv.id = `subheadinglistheading${headingCoonter}`;
 
-    const partInput = document.createElement("input");
-    partInput.type = "text";
-    partInput.id = `part1dish${dishCoonter}`;
-    partInput.className = "part";
-    partInput.required = true;
-    partInput.placeholder = `Part 1 in Dish ${dishCoonter}`;
-    partInput.setAttribute("oninput", "collectData(false,true)");
+    const subheadingInput = document.createElement("input");
+    subheadingInput.type = "text";
+    subheadingInput.id = `subheading1heading${headingCoonter}`;
+    subheadingInput.className = "subheading";
+    subheadingInput.required = true;
+    subheadingInput.placeholder = `Subheading 1 in Heading ${headingCoonter}`;
+    subheadingInput.setAttribute("oninput", "collectData(false,true)");
 
-    const stepListDiv = document.createElement("div");
-    stepListDiv.id = `steplistpart1dish${dishCoonter}`;
+    const itemListDiv = document.createElement("div");
+    itemListDiv.id = `itemlistsubheading1heading${headingCoonter}`;
 
-    const stepTextarea = document.createElement("textarea");
-    stepTextarea.id = `step1part1dish${dishCoonter}`;
-    stepTextarea.className = "step";
-    stepTextarea.required = true;
-    stepTextarea.placeholder = `Step 1 in Part 1 in Dish ${dishCoonter}`;
-    stepTextarea.setAttribute("oninput", "collectData(false,true)");
+    const itemTextarea = document.createElement("textarea");
+    itemTextarea.id = `item1subheading1heading${headingCoonter}`;
+    itemTextarea.className = "item";
+    itemTextarea.required = true;
+    itemTextarea.placeholder = `Item 1 in Subheading 1 in Heading ${headingCoonter}`;
+    itemTextarea.setAttribute("oninput", "collectData(false,true)");
 
-    stepListDiv.appendChild(stepTextarea);
-    stepListDiv.appendChild(document.createElement("br"));
+    itemListDiv.appendChild(itemTextarea);
+    itemListDiv.appendChild(document.createElement("br"));
 
-    const stepAdderBtn = document.createElement("button");
-    stepAdderBtn.className = "stepadder";
-    stepAdderBtn.textContent = "Add step";
-    stepAdderBtn.setAttribute("onclick", `addstep(${dishCoonter}, 1)`);
+    const itemAdderBtn = document.createElement("button");
+    itemAdderBtn.className = "itemadder";
+    itemAdderBtn.textContent = "Add Item";
+    itemAdderBtn.setAttribute("onclick", `addItem(${headingCoonter}, 1)`);
 
-    partDiv.appendChild(partInput);
-    partDiv.appendChild(document.createElement("br"));
-    partDiv.appendChild(stepListDiv);
-    partDiv.appendChild(stepAdderBtn);
-    partDiv.appendChild(document.createElement("br"));
+    subheadingDiv.appendChild(subheadingInput);
+    subheadingDiv.appendChild(document.createElement("br"));
+    subheadingDiv.appendChild(itemListDiv);
+    subheadingDiv.appendChild(itemAdderBtn);
+    subheadingDiv.appendChild(document.createElement("br"));
 
-    const partAdderBtn = document.createElement("button");
-    partAdderBtn.className = "partadder";
-    partAdderBtn.textContent = "Add Part";
-    partAdderBtn.setAttribute("onclick", `addpart(${dishCoonter})`);
+    const subheadingAdderBtn = document.createElement("button");
+    subheadingAdderBtn.className = "subheadingadder";
+    subheadingAdderBtn.textContent = "Add Subheading";
+    subheadingAdderBtn.setAttribute("onclick", `addSubheading(${headingCoonter})`);
 
     dataDiv.appendChild(document.createElement("br"));
-    dataDiv.appendChild(dishInput);
-    dataDiv.appendChild(partDiv);
+    dataDiv.appendChild(headingInput);
+    dataDiv.appendChild(subheadingDiv);
     dataDiv.appendChild(document.createElement("br"));
-    dataDiv.appendChild(partAdderBtn);
+    dataDiv.appendChild(subheadingAdderBtn);
 
     return 0;
 }
-function addpart(dish) {
-    const partIndex = ++partCoonter[dish - 1];
-    stepCoonter[dish - 1].push(1);
+function addSubheading(heading) {
+    const subheadingIndex = ++subheadingCoonter[heading - 1];
+    itemCoonter[heading - 1].push(1);
 
-    const dataDiv = document.getElementById(`partlistdish${dish}`);
+    const dataDiv = document.getElementById(`subheadinglistheading${heading}`);
 
-    const partInput = document.createElement("input");
-    partInput.type = "text";
-    partInput.id = `part${partIndex}dish${dish}`;
-    partInput.className = "part";
-    partInput.required = true;
-    partInput.placeholder = `part ${partIndex} in dish ${dish}`;
-    partInput.setAttribute("oninput", "collectData(false,true)");
+    const subheadingInput = document.createElement("input");
+    subheadingInput.type = "text";
+    subheadingInput.id = `subheading${subheadingIndex}heading${heading}`;
+    subheadingInput.className = "subheading";
+    subheadingInput.required = true;
+    subheadingInput.placeholder = `Subheading ${subheadingIndex} in Heading ${heading}`;
+    subheadingInput.setAttribute("oninput", "collectData(false,true)");
 
     const lineBreak1 = document.createElement("br");
 
-    const stepListDiv = document.createElement("div");
-    stepListDiv.id = `steplistpart${partIndex}dish${dish}`;
+    const itemListDiv = document.createElement("div");
+    itemListDiv.id = `itemlistsubheading${subheadingIndex}heading${heading}`;
 
-    const stepTextarea = document.createElement("textarea");
-    stepTextarea.id = `step1part${partIndex}dish${dish}`;
-    stepTextarea.className = "step";
-    stepTextarea.required = true;
-    stepTextarea.placeholder = `step 1 in Part ${partIndex} in dish ${dish}`;
-    stepTextarea.setAttribute("oninput", "collectData(false,true)");
+    const itemTextarea = document.createElement("textarea");
+    itemTextarea.id = `item1subheading${subheadingIndex}heading${heading}`;
+    itemTextarea.className = "item";
+    itemTextarea.required = true;
+    itemTextarea.placeholder = `Item 1 in Subheading ${subheadingIndex} in Heading ${heading}`;
+    itemTextarea.setAttribute("oninput", "collectData(false,true)");
 
     const lineBreak2 = document.createElement("br");
 
-    stepListDiv.appendChild(stepTextarea);
-    stepListDiv.appendChild(lineBreak2);
+    itemListDiv.appendChild(itemTextarea);
+    itemListDiv.appendChild(lineBreak2);
 
-    const stepButton = document.createElement("button");
-    stepButton.className = "stepadder";
-    stepButton.textContent = "Add step";
-    stepButton.onclick = () => {
-        addstep(dish, partIndex);
+    const itemButton = document.createElement("button");
+    itemButton.className = "itemadder";
+    itemButton.textContent = "Add Item";
+    itemButton.onclick = function () {
+        addItem(heading, subheadingIndex);
     };
 
     const lineBreak3 = document.createElement("br");
 
     dataDiv.appendChild(lineBreak1);
-    dataDiv.appendChild(partInput);
+    dataDiv.appendChild(subheadingInput);
     dataDiv.appendChild(document.createElement("br"));
-    dataDiv.appendChild(stepListDiv);
-    dataDiv.appendChild(stepButton);
+    dataDiv.appendChild(itemListDiv);
+    dataDiv.appendChild(itemButton);
     dataDiv.appendChild(lineBreak3);
 
     return 0;
 }
-function addstep(dish, part) {
-    const stepIndex = ++stepCoonter[dish - 1][part - 1];
+function addItem(heading, subheading) {
+    const itemIndex = ++itemCoonter[heading - 1][subheading - 1];
 
-    const stepListDiv = document.getElementById(`steplistpart${part}dish${dish}`);
+    const itemListDiv = document.getElementById(`itemlistsubheading${subheading}heading${heading}`);
 
-    const newstepTextarea = document.createElement("textarea");
-    newstepTextarea.id = `step${stepIndex}part${part}dish${dish}`;
-    newstepTextarea.className = "step";
-    newstepTextarea.required = true;
-    newstepTextarea.placeholder = `Step ${stepIndex} in Part ${part} in Dish ${dish}`;
-    newstepTextarea.setAttribute("oninput", "collectData(false,true)");
+    const newItemTextarea = document.createElement("textarea");
+    newItemTextarea.id = `item${itemIndex}subheading${subheading}heading${heading}`;
+    newItemTextarea.className = "item";
+    newItemTextarea.required = true;
+    newItemTextarea.placeholder = `Item ${itemIndex} in Subheading ${subheading} in Heading ${heading}`;
+    newItemTextarea.setAttribute("oninput", "collectData(false,true)");
 
     const lineBreak = document.createElement("br");
 
-    stepListDiv.appendChild(newstepTextarea);
-    stepListDiv.appendChild(lineBreak);
+    itemListDiv.appendChild(newItemTextarea);
+    itemListDiv.appendChild(lineBreak);
 
     return 0;
 }
 function collectData(submit, save) {
-    let step = "";
+    let item = "";
     let title = document.getElementById("title").value;
     let name = document.getElementById("name").value;
     let email = document.getElementById("email").value;
     let subject = document.getElementById("subject").value;
-    let dishs = [];
-    let parts = [[]];
-    let steps = [[[]]];
-    for (let i = 1; i <= dishCoonter; ++i) {
-        dishs.push(document.getElementById(`dish${i}`).value);
-        for (let j = 1; j <= partCoonter[i-1]; ++j) {
-            parts[i-1].push(document.getElementById(`part${j}dish${i}`).value);
-            for (let k = 1; k < stepCoonter[i-1][j-1]+1; ++k) {
-                steps[i-1][j-1].push(document.getElementById(`step${k}part${j}dish${i}`).value);
+    let headings = [];
+    let subheadings = [[]];
+    let items = [[[]]];
+    for (let i = 1; i <= headingCoonter; ++i) {
+        headings.push(document.getElementById(`heading${i}`).value);
+        for (let j = 1; j <= subheadingCoonter[i-1]; ++j) {
+            subheadings[i-1].push(document.getElementById(`subheading${j}heading${i}`).value);
+            for (let k = 1; k < itemCoonter[i-1][j-1]+1; ++k) {
+                items[i-1][j-1].push(document.getElementById(`item${k}subheading${j}heading${i}`).value);
             }
-            steps[i-1].push([]);
+            items[i-1].push([]);
         }
-        parts.push([]);
-        steps[i-1].pop();
-        steps.push([[]]);
+        subheadings.push([]);
+        items[i-1].pop();
+        items.push([[]]);
     }
-    steps.pop();
-    parts.pop();
+    items.pop();
+    subheadings.pop();
     if(submit && !save) {
         save = false;
-        parseData(title, name, email, subject, dishs, parts, steps);
+        parseData(title, name, email, subject, headings, subheadings, items);
     }
     if(save && !submit) {
-        saveData(title, name, email, subject, dishs, parts, steps);
+        saveData(title, name, email, subject, headings, subheadings, items);
     }
     return 0;
 }
-function parseData(title, name, email, subject, dishs, parts, steps) {
+function parseData(title, name, email, subject, headings, subheadings, items) {
     console.log("parsing data to save server-side");
     let parsedData = {
         email: email,
@@ -185,29 +185,29 @@ function parseData(title, name, email, subject, dishs, parts, steps) {
         subject: subject,
         data:{}
     }
-    for (let i = 1; i <= dishCoonter; i++) {
-        let dishKey = `dish${i}`;
-        parsedData.data[dishKey] = {
-            name: dishs[i-1],
-            parts: {}
+    for (let i = 1; i <= headingCoonter; i++) {
+        let headingKey = `heading${i}`;
+        parsedData.data[headingKey] = {
+            name: headings[i-1],
+            subheadings: {}
         };
-        for (let j = 1; j <= partCoonter[i - 1]; j++) {
-            let partKey = `part${j}`;
-            parsedData.data[dishKey]["parts"][partKey] = {
-                name: parts[i-1][j-1],
-                steps: {}
+        for (let j = 1; j <= subheadingCoonter[i - 1]; j++) {
+            let subheadingKey = `subheading${j}`;
+            parsedData.data[headingKey]["subheadings"][subheadingKey] = {
+                name: subheadings[i-1][j-1],
+                items: {}
             };
-            for (let k = 1; k <= stepCoonter[i - 1][j - 1]; k++) {
-                let stepKey = `step${k}`;
-                parsedData.data[dishKey]["parts"][partKey]["steps"][stepKey] = steps[i-1][j-1][k-1];
+            for (let k = 1; k <= itemCoonter[i - 1][j - 1]; k++) {
+                let itemKey = `item${k}`;
+                parsedData.data[headingKey]["subheadings"][subheadingKey]["items"][itemKey] = items[i-1][j-1][k-1];
             };
         }
     }
     db.collection("recipes").doc(title).set(parsedData);
-    setTimeout(() => {clearData();}, 1000)
+    setTimeout(function() {clearData();}, 1000)
     return 0;
 }
-function saveData(title, name, email, subject, dishs, parts, steps) {
+function saveData(title, name, email, subject, headings, subheadings, items) {
     let parsedData = {
         title: title,
         email: email,
@@ -215,58 +215,58 @@ function saveData(title, name, email, subject, dishs, parts, steps) {
         subject: subject,
         data:{}
     }
-    for (let a = 1; a <= dishCoonter; a++) {
-        let dishKey = `dish${a}`;
-        parsedData.data[dishKey] = {
-            name: dishs[a-1]
+    for (let a = 1; a <= headingCoonter; a++) {
+        let headingKey = `heading${a}`;
+        parsedData.data[headingKey] = {
+            name: headings[a-1]
         };
-        for (let b = 1; b <= partCoonter[a - 1]; b++) {
-            let partKey = `part${b}`;
-            parsedData.data[dishKey][partKey] = {
-                name: parts[a-1][b-1]
+        for (let b = 1; b <= subheadingCoonter[a - 1]; b++) {
+            let subheadingKey = `subheading${b}`;
+            parsedData.data[headingKey][subheadingKey] = {
+                name: subheadings[a-1][b-1]
             };
-            for (let c = 1; c <= stepCoonter[a - 1][b - 1]; c++) {
-                let stepKey = `step${c}`;
-                parsedData.data[dishKey][partKey][stepKey] = steps[a-1][b-1][c-1];
+            for (let c = 1; c <= itemCoonter[a - 1][b - 1]; c++) {
+                let itemKey = `item${c}`;
+                parsedData.data[headingKey][subheadingKey][itemKey] = items[a-1][b-1][c-1];
             };
         }
     }
     console.log("saving data to local storage");
-    localStorage.setstep('data', JSON.stringify(parsedData));
-    localStorage.setstep('dishs', dishCoonter.toString());
-    localStorage.setstep('parts', JSON.stringify(partCoonter));
-    localStorage.setstep('steps', JSON.stringify(stepCoonter));
+    localStorage.setItem('data', JSON.stringify(parsedData));
+    localStorage.setItem('headings', headingCoonter.toString());
+    localStorage.setItem('subheadings', JSON.stringify(subheadingCoonter));
+    localStorage.setItem('items', JSON.stringify(itemCoonter));
     return 0;
 }
 
 function loadData() {
-    let grabbeddishs = JSON.parse(localStorage.getstep('dishs'));
-    let grabbedpart = JSON.parse(localStorage.getstep('parts'));
-    let grabbedsteps = JSON.parse(localStorage.getstep('steps'));
-    let grabbedData = JSON.parse(localStorage.getstep('data'));
+    let grabbedHeadings = JSON.parse(localStorage.getItem('headings'));
+    let grabbedSubheading = JSON.parse(localStorage.getItem('subheadings'));
+    let grabbedItems = JSON.parse(localStorage.getItem('items'));
+    let grabbedData = JSON.parse(localStorage.getItem('data'));
 
-    // Dealing with dishs
-    let neededdishs = grabbeddishs-dishCoonter;
-    for (let i=0; i<neededdishs; i++) {
-        adddish();
+    // Dealing with Headings
+    let neededHeadings = grabbedHeadings-headingCoonter;
+    for (let i=0; i<neededHeadings; i++) {
+        addHeading();
     }
 
-    // Dealing with parts
-    let neededparts = 0;
-    for (let j=0; j<dishCoonter; j++) {
-        neededparts = grabbedpart[j]-partCoonter[j];
-        for (let k=0; k<neededparts; k++) {
-            addpart(j+1);
+    // Dealing with Subheadings
+    let neededSubheadings = 0;
+    for (let j=0; j<headingCoonter; j++) {
+        neededSubheadings = grabbedSubheading[j]-subheadingCoonter[j];
+        for (let k=0; k<neededSubheadings; k++) {
+            addSubheading(j+1);
         }
     }
 
-    // Dealing with steps
-    let neededsteps = 0;
-    for (let l=0; l<dishCoonter; l++) {
-        for (let m=0; m<partCoonter[l]; m++) {
-            neededsteps = grabbedsteps[l][m]-stepCoonter[l][m];
-            for (let n=0; n<neededsteps; n++) {
-                addstep(l+1, m+1);
+    // Dealing with Items
+    let neededItems = 0;
+    for (let l=0; l<headingCoonter; l++) {
+        for (let m=0; m<subheadingCoonter[l]; m++) {
+            neededItems = grabbedItems[l][m]-itemCoonter[l][m];
+            for (let n=0; n<neededItems; n++) {
+                addItem(l+1, m+1);
             }
         }
     }
@@ -278,23 +278,23 @@ function loadData() {
     document.getElementById("title").value = grabbedData.title;
 
     // Dealing with data
-    for(let o=1; o<=dishCoonter; o++) {
-        document.getElementById(`dish${o}`).value = grabbedData.data[`dish${o}`].name;
-        for (let p=1; p<=partCoonter[o-1]; p++) {
-            document.getElementById(`part${p}dish${o}`).value = grabbedData.data[`dish${o}`][`part${p}`].name;
-            for (let q=1; q<=stepCoonter[o-1][p-1]; q++) {
-                document.getElementById(`step${q}part${p}dish${o}`).value = grabbedData.data[`dish${o}`][`part${p}`][`step${q}`];
+    for(let o=1; o<=headingCoonter; o++) {
+        document.getElementById(`heading${o}`).value = grabbedData.data[`heading${o}`].name;
+        for (let p=1; p<=subheadingCoonter[o-1]; p++) {
+            document.getElementById(`subheading${p}heading${o}`).value = grabbedData.data[`heading${o}`][`subheading${p}`].name;
+            for (let q=1; q<=itemCoonter[o-1][p-1]; q++) {
+                document.getElementById(`item${q}subheading${p}heading${o}`).value = grabbedData.data[`heading${o}`][`subheading${p}`][`item${q}`];
             }
         }
     }
     console.log("loaded data from local storage");
 }
 function clearData() {
-    localStorage.removestep('data');
-    localStorage.removestep('dishs');
-    localStorage.removestep('parts');
-    localStorage.removestep('steps');
+    localStorage.removeItem('data');
+    localStorage.removeItem('headings');
+    localStorage.removeItem('subheadings');
+    localStorage.removeItem('items');
     location.reload();
 }
 
-window.onload = setTimeout(() => {loadData();}, 100)
+window.onload = setTimeout(function() {loadData();}, 100)

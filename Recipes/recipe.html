@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>©Stew and Ben inc.®™ </title>
+        <title>©Stew and Ben inc.®™ | Study Guides | Submit a Recipe</title>
         <link rel="icon" type="image/x-icon" href="/logo.png">
         <link rel="stylesheet" href="../style.css">
         <script src="../navbar.js"></script>
@@ -14,7 +14,7 @@
     </head>
     <body>
         <div class="mainbody" style="margin-top: 75px;">
-            <h1>Submit a Recipe</h1>
+            <h1>Community Recipes</h1>
             <input type="text" id="name" required oninput="collectData(false,true)" placeholder="First and Last Name">
             <br>
             <input type="text" id="email" required oninput="collectData(false,true)" placeholder="Email Address">
@@ -23,23 +23,23 @@
             <br>
             <input type="text" id="title" required oninput="collectData(false,true)" placeholder="Title">
             <br>
-            <div id="dishs">
-                <input type="text" id="dish1" class="dish" oninput="collectData(false,true)" required placeholder="Dish 1">
-                <div id="partlistdish1">
-                    <input type="text" id="part1dish1" oninput="collectData(false,true)" class="part" required placeholder="Part 1 in Dish 1">
+            <div id="headings">
+                <input type="text" id="heading1" class="heading" oninput="collectData(false,true)" required placeholder="Dish 1">
+                <div id="subheadinglistheading1">
+                    <input type="text" id="subheading1heading1" oninput="collectData(false,true)" class="subheading" required placeholder="Part 1 in Dish 1">
                     <br>
-                    <div id="steplistpart1dish1">
-                        <textarea id="step1part1dish1" class="step" oninput="collectData(false,true)" required placeholder="Step 1 in Part 1 in Dish 1"></textarea>
+                    <div id="itemlistsubheading1heading1">
+                        <textarea id="item1subheading1heading1" class="item" oninput="collectData(false,true)" required placeholder="Step 1 in Part 1 in Dish 1"></textarea>
                         <br>             
                     </div>
-                    <button class="stepadder" onclick="addstep(1,1)" oninput="collectData(false,true)" onclick="loadData()">Add Step</button>
+                    <button class="itemadder" onclick="addItem(1,1)" oninput="collectData(false,true)" onclick="loadData()">Add Step</button>
                     <br>
                 </div>
                 <br>
-                <button class="partadder" onclick="addpart(1)" oninput="collectData(false,true)" onclick="loadData()">Add part</button>
+                <button class="subheadingadder" onclick="addSubheading(1)" oninput="collectData(false,true)" onclick="loadData()">Add Part</button>
             </div>
             <br>
-            <button class="dishadder" onclick="adddish()" oninput="collectData(false,true)" onclick="loadData()">Add Dish</button>
+            <button class="headingadder" onclick="addHeading()" oninput="collectData(false,true)" onclick="loadData()">Add Dish</button>
             <br>
             <br>
             <button id="submit" onclick="collectData(true, false)" onclick="clearData()">Submit</button>
