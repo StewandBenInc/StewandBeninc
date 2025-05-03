@@ -41,21 +41,24 @@ async function fetchComSubmissions() {
     });
 }
 
+async function fetchRecipeSubmissions() {
+    let requestList = document.getElementById('recipes');
+    const snapshot = await db.collection("recipes").get();
+    // biome-ignore lint/complexity/noForEach: <explanation>
+    snapshot.forEach(doc => {
+        const data = doc.data();
+        // biome-ignore lint/style/useConst: <explanation>
+        let li = `<li><a href="/Recipes/recipetemplate.html?name=${doc.id}">${doc.id} by, ${data.name} (${data.email})</a> <span onclick="removeData('${doc.id}', 'recipes')">Remove?</span></li>`;
+        requestList.innerHTML += li;
+    });
+}
+
 async function fetchGameRequests() {
     let requestList = document.getElementById('gamerequest');
     const snapshot = await db.collection("gameRequests").get();
     snapshot.forEach(doc => {
         const data = doc.data();
         let li = `<li>${data.name} (${data.email}): ${data.request} <span onclick="removeData('${doc.id}', 'gameRequests')">Remove?</span></li>`;
-        requestList.innerHTML += li;
-    });
-}
-async function fetchRecipes() {
-    let requestList = document.getElementById('recipes');
-    const snapshot = await db.collection("recipes").get();
-    snapshot.forEach(doc => {
-        const data = doc.data();
-        let li = `<li>${data.name} (${data.email}): ${data.request} <span onclick="removeData('${doc.id}', 'recipes')">Remove?</span></li>`;
         requestList.innerHTML += li;
     });
 }
@@ -98,10 +101,12 @@ function checkAdmin() {
     }
 }
 
-window.onload = async function() {
+window.onload = async () => {
     checkAdmin();
     await fetchRequests();
     await fetchComSubmissions();
     await fetchGameRequests();
     await fetchUsers();
+    await fetchRecipeSubmissions();
+    console.log("All data fetched");
 }
