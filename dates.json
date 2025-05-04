@@ -442,5 +442,10 @@
         "start": "2025-05-27",
         "end": "2025-05-31",
         "color": "peru"
+    },
+    {
+        "title": "Final French Test - La Ville et Le Patrimoine",
+        "start": "2025-05-09",
+        "color": "red"
     }
     ]

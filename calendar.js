@@ -10,72 +10,60 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
-async function addTheThing() {
-    const cookies = document.cookie.split(';');
-    for (let i = 0; i < cookies.length; i++) {
-        let cookie = cookies[i].trim();
-        if (cookie.startsWith("username" + '=')) {
-            if(cookie.substring(9)) {
-                const username = cookie.substring(9);
-                console.log(username)
-                await db.collection("accounts").doc(username).get().then((doc) => {
-                    if (doc.exists) {
-                        const data = doc.data();
-                        const webcalURL = data.calendar;
-                        return fetchICSandParseToFullCalendar(webcalURL);
-                    } else {
-                        console.log("No such document!");
-                    }
-                }).catch((error) => {
-                    console.log("Error getting document:", error);
-                });
-            }
-        }
-    }
-}
-
 function convertWebcalToHttps(url) {
     return url.replace(/^webcal:/i, "https:");
 }
 
-let fullCalendarEvents = [];
-async function fetchICSandParseToFullCalendar(url) {
-    
-const httpsURL = convertWebcalToHttps(url);
-const proxiedURL = "https://corsproxy.io/?" + encodeURIComponent(httpsURL);
-    
+async function addTheThing(data) {
+    const cookies = document.cookie.split(';');
+    for (let i = 0; i < cookies.length; i++) {
+        let cookie = cookies[i].trim();
+        if (cookie.startsWith("username=")) {
+            const username = cookie.substring(9);
+            if (!username) continue;
 
-try {
-    const response = await fetch(proxiedURL);
-    const icsText = await response.text();
-    const jcalData = ICAL.parse(icsText);
-    const comp = new ICAL.Component(jcalData);
-    const vevents = comp.getAllSubcomponents("vevent");
+            try {
+                const doc = await db.collection("accounts").doc(username).get();
+                if (doc.exists) {
+                    const otherdata = doc.data();
+                    const webcalURL = otherdata.calendar;
+                    const httpsURL = convertWebcalToHttps(webcalURL);
 
-    // Clear existing events
-    fullCalendarEvents = [];
+                    const corsProxy = "https://corsproxy.io/?";
+                    const response = await fetch(corsProxy + encodeURIComponent(httpsURL));
+                    const icsText = await response.text();
 
-    for (const evt of vevents) {
-    const e = new ICAL.Event(evt);
-    fullCalendarEvents.push({
-        title: e.summary,
-        start: e.startDate.toString(),
-        end: e.endDate.toString()
-    });
-    return fullCalendarEvents;
+                    const jcalData = ICAL.parse(icsText);
+                    const comp = new ICAL.Component(jcalData);
+                    const vevents = comp.getAllSubcomponents("vevent");
+
+                    const icsEvents = vevents.map(vevent => {
+                        const event = new ICAL.Event(vevent);
+                        return {
+                            title: event.summary,
+                            start: event.startDate.toJSDate(),
+                            end: event.endDate.toJSDate()
+                        };
+                    });
+
+                    return [...data, ...icsEvents]; // combine and return
+                } else {
+                    console.log("No such document!");
+                }
+            } catch (error) {
+                console.log("Error getting document or parsing ICS:", error);
+            }
+        }
     }
-
-    console.log("Updated FullCalendar events:", fullCalendarEvents);
-} catch (err) {
-    console.error("Failed to fetch or parse .ics file:", err);
-}
+    return data; // fallback
 }
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     if (!window.FullCalendar) {
         console.error("FullCalendar is not loaded properly.");
         return;
     }
+
     var calendarEl = document.getElementById('calendar');
     var calendar = new FullCalendar.Calendar(calendarEl, {
         themeSystem: 'bootstrap5',
@@ -89,13 +77,15 @@ document.addEventListener('DOMContentLoaded', function() {
         initialView: 'dayGridMonth',
         events: function (fetchInfo, successCallback, failureCallback) {
             fetch('dates.json')
-            .then(response => response.json())
-            .then(data => successCallback(data))
-            .catch(error => failureCallback(error));
+                .then(response => response.json())
+                .then(data => addTheThing(data))
+                .then(allEvents => successCallback(allEvents))
+                .catch(error => {
+                    console.error("Error loading events:", error);
+                    failureCallback(error);
+                });
         }
     });
+
     calendar.render();
 });
-
-addTheThing();
-console.log(fullCalendarEvents)
