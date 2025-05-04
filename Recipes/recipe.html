@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>©Stew and Ben inc.®™ | Study Guides | Submit a Recipe</title>
+        <link rel="icon" type="image/x-icon" href="/logo.png">
+        <link rel="stylesheet" href="../style.css">
+        <script src="../navbar.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/10.0.0/firebase-app-compat.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/10.0.0/firebase-firestore-compat.js"></script>
+        <script src="recipesubmit.js"></script>
+        <script src="/footer.js"></script>
+    </head>
+    <body>
+        <div class="mainbody" style="margin-top: 75px;">
+            <h1>Community Recipes</h1>
+            <input type="text" id="name" required oninput="collectData(false,true)" placeholder="First and Last Name">
+            <br>
+            <input type="text" id="email" required oninput="collectData(false,true)" placeholder="Email Address">
+            <br>
+            <input type="text" id="subject" required oninput="collectData(false,true)" placeholder="Subject">
+            <br>
+            <input type="text" id="title" required oninput="collectData(false,true)" placeholder="Title">
+            <br>
+            <div id="headings">
+                <input type="text" id="heading1" class="heading" oninput="collectData(false,true)" required placeholder="Dish 1">
+                <div id="subheadinglistheading1">
+                    <input type="text" id="subheading1heading1" oninput="collectData(false,true)" class="subheading" required placeholder="Part 1 in Dish 1">
+                    <br>
+                    <div id="itemlistsubheading1heading1">
+                        <textarea id="item1subheading1heading1" class="item" oninput="collectData(false,true)" required placeholder="Step 1 in Part 1 in Dish 1"></textarea>
+                        <br>             
+                    </div>
+                    <button class="itemadder" onclick="addItem(1,1)" oninput="collectData(false,true)" onclick="loadData()">Add Step</button>
+                    <br>
+                </div>
+                <br>
+                <button class="subheadingadder" onclick="addSubheading(1)" oninput="collectData(false,true)" onclick="loadData()">Add Part</button>
+            </div>
+            <br>
+            <button class="headingadder" onclick="addHeading()" oninput="collectData(false,true)" onclick="loadData()">Add Dish</button>
+            <br>
+            <br>
+            <button id="submit" onclick="collectData(true, false)" onclick="clearData()">Submit</button>
+            <br>
+            <br>
+            <button id="clear" onclick="clearData()">Clear</button>
+        </div>
+    </body>
+</html>
