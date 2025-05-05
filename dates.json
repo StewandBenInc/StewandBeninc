@@ -460,13 +460,17 @@
     { 
         "title": "Capstone Thesis Defense",
         "start":"2025-05-14",
-    "color":"red"
+        "color":"red"
     },
-    { "title": "Capstone Thesis Defense",
+    { 
+        "title": "Capstone Thesis Defense",
         "start":"2025-05-21",
-    "color":"red"},
-    {"title":"Science Expo presentations",
+        "color":"red"
+    },
+    {
+        "title":"Science Expo presentations",
         "start":"2025-05-12",
         "end":"2025-05-14",
-        "color":"green"}
-    ]
+        "color":"green"
+    }
+]
