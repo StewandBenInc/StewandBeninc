@@ -89,14 +89,14 @@ function checkAdmin() {
                 console.log("Admin");
                 done = true;
             } else {
-                window.location.href = "/notallowed.html";
+                window.location.href = "/Signin/notallowed.html";
                 console.log("Not an admin");
             }
             console.log("Admin cookie found");
         }
     }
     if (!done) {
-        window.location.href = "/notallowed.html";
+        window.location.href = "/Signin/notallowed.html";
         console.log("No admin cookie found");
     }
 }

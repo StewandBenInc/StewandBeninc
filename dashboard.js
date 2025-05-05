@@ -19,12 +19,12 @@ function checkSignIn() {
             if(cookie.substring(9)) {
                 done = true;
             } else {
-                window.location.href = "/notallowed.html";
+                window.location.href = "/Signin/notallowed.html";
             }
         }
     }
     if (!done) {
-        window.location.href = "/notallowed.html";
+        window.location.href = "/Signin/notallowed.html";
     }
 }
 
