@@ -282,21 +282,71 @@
     "edify": {
         "part_of_speech": "v",
         "definition": "to instruct or improve",
-        "used_in_sentence": "The ebullient kitten, armed with a tiny pirate hat, boldly declared her intentions to conquer the living room couch and claim it as her pirate ship."
+        "used_in_sentence": "The teacher sought to edify her students by sharing stories of perseverance and success."
     },
     "conflate": {
         "part_of_speech": "v",
         "definition": "to combine or blend two things into one",
-        "used_in_sentence": "The ebullient kitten, armed with a tiny pirate hat, boldly declared her intentions to conquer the living room couch and claim it as her pirate ship."
+        "used_in_sentence": "The author chose to conflate historical events to create a more compelling narrative."
     },
     "disputatious": {
         "part_of_speech": "adj",
         "definition": "fond of or causing heated arguments",
-        "used_in_sentence": "The ebullient kitten, armed with a tiny pirate hat, boldly declared her intentions to conquer the living room couch and claim it as her pirate ship."
+        "used_in_sentence": "The disputatious lawyer thrived in courtroom debates, always ready to challenge opposing arguments."
     },
     "abate": {
         "part_of_speech": "v",
         "definition": "to decrease or lessen in intensity or amount",
-        "used_in_sentence": "The ebullient kitten, armed with a tiny pirate hat, boldly declared her intentions to conquer the living room couch and claim it as her pirate ship."
+        "used_in_sentence": "The storm began to abate, leaving behind a calm and clear sky."
+    },
+    "prattle": {
+        "part_of_speech": "v",
+        "definition": "to talk at length in a foolish way",
+        "used_in_sentence": "The toddler would prattle endlessly about imaginary adventures with her stuffed animals."
+    },
+    "accost": {
+        "part_of_speech": "v",
+        "definition": "to approach someone in a bold and aggressive way",
+        "used_in_sentence": "The reporter decided to accost the celebrity outside the restaurant to ask about the latest rumors."
+    },
+    "malleable": {
+        "part_of_speech": "adj",
+        "definition": "capable of being altered",
+        "used_in_sentence": "The artist found the clay to be incredibly malleable, shaping it into intricate designs with ease."
+    },
+    "abjure": {
+        "part_of_speech": "v",
+        "definition": "to renounce a belief or claim",
+        "used_in_sentence": "He chose to abjure his former political views after learning more about the issue."
+    },
+    "elucidate": {
+        "part_of_speech": "v",
+        "definition": "to give a clarifying explanation",
+        "used_in_sentence": "The professor used diagrams to elucidate the complex process of photosynthesis."
+    },
+    "mellifluous": {
+        "part_of_speech": "adj",
+        "definition": "sweet or musical; pleasant to hear",
+        "used_in_sentence": "Her mellifluous voice filled the room, captivating everyone with its soothing tone."
+    },
+    "reminisce": {
+        "part_of_speech": "v",
+        "definition": "to indulge in enjoyable recollection of the past",
+        "used_in_sentence": "They gathered around the campfire to reminisce about their childhood adventures."
+    },
+    "benign": {
+        "part_of_speech": "adj",
+        "definition": "not harmful in effect",
+        "used_in_sentence": "The doctor assured her that the lump was benign and posed no threat to her health."
+    },
+    "vouchsafe": {
+        "part_of_speech": "v",
+        "definition": "to give something in a gracious manner",
+        "used_in_sentence": "The queen decided to vouchsafe a rare audience to the humble farmer who had saved her horse."
+    },
+    "gull": {
+        "part_of_speech": "v",
+        "definition": "to deceive or trick",
+        "used_in_sentence": "The con artist tried to gull the tourists into buying fake tickets to the museum."
     }
 }
