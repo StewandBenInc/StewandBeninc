@@ -1,3 +1,10 @@
 # StewandBeninc
-This is StewandBen inc., an amazing website for everyone!
-Made By ItsCrazyWolfWasTaken and HTML93
+This is Stew and Ben Inc., an amazing website for everyone!
+Made By Bean91 and HTML93
+WE LOVE UNPAYED CHILD LABOR
+                                                         c=====e
+                                                            H
+   ____________                                         _,,_H__
+  (__((__((___()                                       //|     |
+ (__((__((___()()_____________________________________// |ACME |
+(__((__((___()()()------------------------------------'  |_____|

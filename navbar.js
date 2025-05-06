@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
             attachNavbarEvents(); // Reattach event listeners after inserting the HTML
         });
-    fetch("/cookie.html")
+    fetch("/Footer/cookie.html")
         .then(response => response.text())
         .then(data => {
             document.body.insertAdjacentHTML("beforeend", data);
@@ -84,5 +84,4 @@ window.onload = function() {
     if (!getCookie("cookiesAccepted")) {
         document.getElementById("cookie-consent").style.display = "block";
     }
-    console.log("ran")
 }

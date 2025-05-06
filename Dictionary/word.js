@@ -2,7 +2,7 @@ const params = new URLSearchParams(window.location.search);
 const word = params.get("word");
 console.log(word)
 
-fetch("master.json")
+fetch("/Dictionary/master.json")
     .then(response => response.json())
     .then(data => {
         let pos = null;
@@ -20,7 +20,7 @@ fetch("master.json")
             document.getElementById("sentence").textContent = `${sentence}`;
             document.getElementById("title").textContent = `©Stew and Ben inc.®™ | Dictionary | ${word}`;
         } else{
-            document.body.innerHTML = "<h1>Word not found!</h1><a href='index.html'>Back</a>";
+            document.body.innerHTML = "<h1>Word not found!</h1><a href='/index.html'>Back</a>";
         }
     })
     // .catch(error => console.error("Error loading word:", error));

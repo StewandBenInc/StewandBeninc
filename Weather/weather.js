@@ -62,10 +62,10 @@ function geocodeAddress() {
         return;
     }
     if (zip === "\"Anthony is loquacious\"") {
-        window.location.href = "FunTimes/games.html";
+        window.location.href = "/FunTimes/games.html";
         return;
     }
-    fetch("uszips.csv")
+    fetch("/Weather/uszips.csv")
     .then(response => response.text())
     .then(csvText => {
         console.log("ZIP Code entered:", zip);
