@@ -61,7 +61,7 @@ function geocodeAddress() {
         console.error("No ZIP entered.");
         return;
     }
-    if (zip === "\"Anthony is loquacious\"") {
+    if (zip === "\"привет\"") {
         window.location.href = "/FunTimes/games.html";
         return;
     }
