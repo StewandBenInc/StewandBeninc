@@ -203,7 +203,7 @@ function parseData(title, name, email, subject, headings, subheadings, items) {
             };
         }
     }
-    db.collection("users").doc(title).set(parsedData);
+    db.collection("studyGuideSubmitted").doc(title).set(parsedData);
     setTimeout(function() {clearData();}, 1000)
     return 0;
 }

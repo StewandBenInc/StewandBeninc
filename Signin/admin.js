@@ -33,11 +33,19 @@ async function fetchRequests() {
 
 async function fetchComSubmissions() {
     let requestList = document.getElementById('comsub');
-    const snapshot = await db.collection("users").get();
+    const snapshot = await db.collection("studyGuideSubmitted").get();
+    const snapshotOld = await db.collection("users").get();
+    // biome-ignore lint/complexity/noForEach: <explanation>
     snapshot.forEach(doc => {
         const data = doc.data();
-        let li = `<li><a href="/StudyGuides/comguidetemp.html?name=${doc.id}">${doc.id} by, ${data.name} (${data.email})</a> <span onclick="removeData('${doc.id}', 'users')">Remove?</span></li>`;
+        const li = `<li><a href="/StudyGuides/comguidetemp.html?name=${doc.id}">${doc.id} by, ${data.name} (${data.email})</a> <span onclick="removeData('${doc.id}', "studyGuideSubmitted")">Remove?</span></li>`;
         requestList.innerHTML += li;
+    // biome-ignore lint/complexity/noForEach: <explanation>
+    snapshotOld.forEach(doc => {
+            const data = doc.data();
+            const li = `<li><a href="/StudyGuides/comguidetemp.html?name=${doc.id}">${doc.id} by, ${data.name} (${data.email})</a> <span onclick="removeData('${doc.id}', "studyGuideSubmitted")">Remove?</span></li>`;
+            requestList.innerHTML += li;
+    
     });
 }
 
