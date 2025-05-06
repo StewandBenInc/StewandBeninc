@@ -1,27 +1,28 @@
-// Load navbar.html into each page
+function getCookie(name) {
+    const cookies = document.cookie.split(';');
+    for(let cookie of cookies) {
+        if (cookie.trim().startsWith(name + "=")) {
+            return cookie.trim().substring((name + "=").length);
+        }
+    }
+    return null;
+}
+
 document.addEventListener("DOMContentLoaded", () => {
     fetch("/FooterAndNav/navbar.html")
         .then(response => response.text())
         .then(data => {
             document.body.insertAdjacentHTML("afterbegin", data);
-            const cookies = document.cookie.split(';');
-            for (let i = 0; i < cookies.length; i++) {
-                let cookie = cookies[i].trim();
-                if (cookie.startsWith("username" + '=')) {
-                    if(cookie.substring(9)) {
-                        document.getElementById('signin').style.display = "none";
-                        document.getElementById('dashboard').style.display = "inline-block";
-                    }
-                }
-                if (cookie.startsWith("admin" + '=')) {
-                    if(cookie.substring(6)) {
-                        document.getElementById('admin').style.display = "inline-block";
-                    }
-                }
+            if(getCookie("username")) {
+                document.getElementById('signin').style.display = "none";
+                document.getElementById('dashboard').style.display = "inline-block";
+            }
+            if(getCookie("admin") === "true") {
+                document.getElementById('admin').style.display = "inline-block";
             }
             attachNavbarEvents(); // Reattach event listeners after inserting the HTML
         });
-    fetch("/FooterAndNav//cookie.html")
+    fetch("/FooterAndNav/cookie.html")
         .then(response => response.text())
         .then(data => {
             document.body.insertAdjacentHTML("beforeend", data);
@@ -58,16 +59,6 @@ function setCookie(name, value, days) {
     const d = new Date();
     d.setTime(d.getTime() + (days*24*60*60*1000));
     document.cookie = name + "=" + value + ";expires=" + d.toUTCString() + ";path=/";
-}
-
-function getCookie(name) {
-    const cookies = document.cookie.split(';');
-    for(let cookie of cookies) {
-        if (cookie.trim().startsWith(name + "=")) {
-            return cookie.trim().substring((name + "=").length);
-        }
-    }
-    return null;
 }
 
 function acceptCookies() {

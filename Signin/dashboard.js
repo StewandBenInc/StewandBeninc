@@ -11,19 +11,9 @@ firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
 function checkSignIn() {
-    const cookies = document.cookie.split(';');
-    let done = false;
-    for (let i = 0; i < cookies.length; i++) {
-        let cookie = cookies[i].trim();
-        if (cookie.startsWith("username" + '=')) {
-            if(cookie.substring(9)) {
-                done = true;
-            } else {
-                window.location.href = "/Signin/notallowed.html";
-            }
-        }
-    }
-    if (!done) {
+    if(getCookie("username")) {
+        return;
+    } else {
         window.location.href = "/Signin/notallowed.html";
     }
 }
@@ -51,24 +41,14 @@ async function fillIn() {
 }
 
 function signOut() {
-    const cookies = document.cookie.split(';');
-    for (let i = 0; i < cookies.length; i++) {
-        let cookie = cookies[i].trim();
-        if (cookie.startsWith("username" + '=')) {
-            if(cookie.substring(9)) {
-                document.cookie = "username=";
-            }
-        }
-        if (cookie.startsWith("admin" + '=')) {
-            if(cookie.substring(6)) {
-                document.cookie = "admin=";
-            }
-        }
-        if (cookie.startsWith("mvp" + '=')) {
-            if(cookie.substring(4)) {
-                document.cookie = "mvp=";
-            }
-        }
+    if(getCookie("username")) {
+        document.cookie = "username=";
+    }
+    if(getCookie("admin")) {
+        document.cookie = "admin=";
+    }
+    if(getCookie("mvp")) {
+        document.cookie = "mvp=";
     }
     alert("You have been signed out");
     window.location.href = "/index.html";
