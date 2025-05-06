@@ -20,6 +20,9 @@ document.addEventListener("DOMContentLoaded", () => {
             if(getCookie("admin") === "true") {
                 document.getElementById('admin').style.display = "inline-block";
             }
+            if(getCookie("mvp") === "true" || getCookie("admin") === "true"){ 
+                document.getElementById('mvp').style.display = "inline-block";
+            }
             attachNavbarEvents(); // Reattach event listeners after inserting the HTML
         });
     fetch("/FooterAndNav/cookie.html")
