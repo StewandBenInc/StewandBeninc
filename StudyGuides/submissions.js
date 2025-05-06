@@ -16,7 +16,7 @@ const title = params.get("name");
 function getSubmissions() {
     if (title === "null") {
         list = document.getElementById("guide-list");
-        db.collection("users").get()
+        db.collection("studyGuideSubmitted").get()
         .then(snapshot => {
         snapshot.forEach(doc => {
             console.log(doc);
@@ -31,7 +31,7 @@ function getSubmissions() {
 
 async function loadGuide() {
     if (title !== "null") {
-        const doc = await db.collection("users").doc(title).get()
+        const doc = await db.collection("studyGuideSubmitted").doc(title).get()
         let data = doc.data();
         document.getElementById("title").innerHTML = `©Stew and Ben inc.®™ | Community Submitted Guide | ${doc.id} by ${data.name}`;
         document.getElementById("name").innerHTML = `${doc.id} by ${data.name}`;
