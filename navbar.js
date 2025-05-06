@@ -1,6 +1,6 @@
 // Load navbar.html into each page
 document.addEventListener("DOMContentLoaded", () => {
-    fetch("/navbar.html")
+    fetch("/FooterAndNav/navbar.html")
         .then(response => response.text())
         .then(data => {
             document.body.insertAdjacentHTML("afterbegin", data);
@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
             attachNavbarEvents(); // Reattach event listeners after inserting the HTML
         });
-    fetch("/Footer/cookie.html")
+    fetch("/FooterAndNav//cookie.html")
         .then(response => response.text())
         .then(data => {
             document.body.insertAdjacentHTML("beforeend", data);
