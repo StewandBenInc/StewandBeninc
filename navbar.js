@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
             if(getCookie("admin") === "true") {
                 document.getElementById('admin').style.display = "inline-block";
             }
-            if(getCookie("mvp") === "true" || getCookie("admin") === "true"){ 
+            if(getCookie("mvp") === "true"){ 
                 document.getElementById('mvp').style.display = "inline-block";
             }
             attachNavbarEvents(); // Reattach event listeners after inserting the HTML
@@ -74,7 +74,7 @@ function denyCookies() {
     window.location.href = "https://www.google.com";
 }
 
-window.onload = function() {
+window.onload = () => {
     if (!getCookie("cookiesAccepted")) {
         document.getElementById("cookie-consent").style.display = "block";
     }
