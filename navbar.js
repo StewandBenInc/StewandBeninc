@@ -1,8 +1,8 @@
 function getCookie(name) {
     const cookies = document.cookie.split(';');
-    for(let cookie of cookies) {
-        if (cookie.trim().startsWith(name + "=")) {
-            return cookie.trim().substring((name + "=").length);
+    for(const cookie of cookies) {
+        if (cookie.trim().startsWith(`${name}=`)) {
+            return cookie.trim().substring((`${name}=`).length);
         }
     }
     return null;
@@ -20,8 +20,9 @@ document.addEventListener("DOMContentLoaded", () => {
             if(getCookie("admin") === "true") {
                 document.getElementById('admin').style.display = "inline-block";
             }
-            if(getCookie("mvp") === "true"){ 
+            if(getCookie("mvp") === "true" || getCookie("admin") === "true") { 
                 document.getElementById('mvp').style.display = "inline-block";
+
             }
             attachNavbarEvents(); // Reattach event listeners after inserting the HTML
         });
@@ -61,7 +62,7 @@ function attachNavbarEvents() {
 function setCookie(name, value, days) {
     const d = new Date();
     d.setTime(d.getTime() + (days*24*60*60*1000));
-    document.cookie = name + "=" + value + ";expires=" + d.toUTCString() + ";path=/";
+    document.cookie = `${name}=${value};expires=${d.toUTCString()};path=/`;
 }
 
 function acceptCookies() {
@@ -75,7 +76,8 @@ function denyCookies() {
 }
 
 window.onload = () => {
-    if (!getCookie("cookiesAccepted")) {
-        document.getElementById("cookie-consent").style.display = "block";
+    const cookieBanner = document.getElementById("cookie-consent");
+    if (!getCookie("cookiesAccepted") && cookieBanner) {
+        cookieBanner.style.display = "block";
     }
-}
+};
