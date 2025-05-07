@@ -472,5 +472,94 @@
         "start":"2025-05-12",
         "end":"2025-05-14",
         "color":"green"
+    },
+    {
+        "title": "Algebra Honors Test",
+        "start": "2025-05-09",
+        "color": "royalblue"
+
+    },
+
+    {
+        "title" : "Mandarin Unit 4 Test",
+        "start" : "2025-05-13",
+        "color" : "red"
+    },
+    {
+        "title":"Gov’t Supreme Court Case Presentations (Shiff, Smith, DiFabio, Patino, DRaveis, Rothman, Giddiens, Ventrella)",
+        "start":"2025-05-13",
+        "color":"purple"
+    },
+    {
+        "title":"Gov’t Supreme Court Case Presentations (Malan, Buchalter, Seabrook, Weismann, Douglas,Robinson, Hord, Wright)",
+        "start":"2025-05-14",
+        "color":"purple"
+    },
+    {
+        "title":"Gov’t Supreme Court Case Presentations (Cao, Katsuyama, Griffith, Robbins, Glosserman, Bailey, Barry, Miller, Zapanta, Levin, Bargas, Upchurch, Kelley)",
+        "start":"2025-05-15",
+        "color":"purple"
+    },
+    {
+        "title":"Gov’t Supreme Court Case Presentations (Seymour, Kline, Costa, Brown, Balkan, Foster, Adams, Low, Haverstick, Karpf, Rieger, Martire))",
+        "start":"2025-05-19",
+        "color":"purple"
+    },
+    {
+        "title":"Gov’t Supreme Court Case Presentations (Owen, WIlliams, Nemec, Brown, Gaspard, Schneider, Dunev, Fallquist, Goodwin, Kiev, Richer, Wellen)",
+        "start":"2025-05-20",
+        "color":"purple"
+    },
+    {
+        "title":"Gov’t Supreme Court Case Presentations (Ellis, Massie, Murtaugh, Bauer)",
+        "start":"2025-05-21",
+        "color":"purple"
+    },  
+    {
+        "title":"Gov’t Supreme Court Case Presentations (Collins, Honarvar, Clarke, C Raveis, Kumar, Reed, Weiss)",
+        "start":"2025-05-22",
+        "color":"purple"
+    },
+    {
+        "title":"World Map Quiz",
+        "start":"2025-05-16",
+        "color":"purple"
+    },
+    {
+        "title": "Mandarin Final Project Script",
+        "start": "2025-05-16",
+        "color": "red"  
+    },
+    {
+        "title": "Mandarin Final Project",
+        "start": "2025-05-21",
+        "color": "red"
+    },
+    {
+        "title": "English: Final Project Due",
+        "start": "2025-05-23",
+        "color": "gold"
+    },
+    { 
+        "title": "Algebra Honors quiz",
+        "start": "2025-05-20",
+        "color": "royalblue"
+
+    },
+    {
+        "title": "Mandarin L11-12 Dictation Quiz",
+        "start": "2025-05-22",
+        "color": "red"
+    },
+    {
+        "title": "English: Scene Performance",
+        "start": "2025-05-16",
+        "color": "gold"
+    },
+    {
+        "title":"Book Blog 8",
+        "start":"2025-05-9",
+        "color":"gold"
     }
+    
 ]
