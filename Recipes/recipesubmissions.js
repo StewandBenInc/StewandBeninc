@@ -13,86 +13,71 @@ const db = firebase.firestore();
 const params = new URLSearchParams(window.location.search);
 const title = params.get("name");
 
-function isValidTitle(t) {
-    return t && t !== "null" && t.trim() !== "";
-}
-
-function getSubmissions() {
-    const list = document.getElementById("guide-list");
-    db.collection("recipes").get()
-        .then(snapshot => {
-            snapshot.forEach(doc => {
-                list.innerHTML += `<li><a href="recipetemplate.html?name=${doc.id}"><h3>${doc.id} by, ${doc.data().name}</h3></a></li>`;
-            });
+async function getSubmissions() {
+    if (title === "null") {
+        list = document.getElementById("guide-list");
+        const snapshot = await db.collection("recipes").get()
+        console.log(snapshot);
+        snapshot.forEach(doc => {
+            console.log(doc);
+            list.innerHTML += `<li><a href="recipetemplate.html?name=${doc.id}"><h3>${doc.id} by, ${doc.data().name} Subject: ${doc.data().subject}</h3></a></li>`;
         })
-        .catch(error =>
-            console.error("Error fetching data: ", error));
+        .catch(error => {
+        console.error("Error fetching data: ", error);
+        });
+    }
 }
 
 async function loadGuide() {
-    try {
-        if (!isValidTitle(title)) return;
-
-        const docRef = db.collection("recipes").doc(title);
-        const doc = await docRef.get();
-
-        if (!doc.exists) {
-            console.error("No such document!");
-            return;
-        }
-
-        const data = doc.data();
+    console.log("notin")
+    if (title !== "null") {
+        console.log("in")
+        const doc = await db.collection("recipes").doc(title).get()
+        let data = doc.data();
+        console.log(data);
         document.getElementById("title").innerHTML = `©Stew and Ben inc.®™ | Community Submitted Recipe | ${doc.id} by ${data.name}`;
         document.getElementById("name").innerHTML = `${doc.id} by ${data.name}`;
-
-        const realData = data.data;
-        for (const heading in realData) {
-            document.getElementById("guide-content").innerHTML += `<ul class="dropdown"><h2 class="dropdown-toggle"> ${realData[heading].name}</h2><div class="dropdown-content" id="${heading}">`;
-            for (const subheading in realData[heading].subheadings) {
-                const subheadingData = realData[heading].subheadings[subheading];
-                document.getElementById(heading).innerHTML += `<h3>${subheadingData.name}</h3>`;
-                for (const item in subheadingData.items) {
-                    document.getElementById(heading).innerHTML += "<li>" + subheadingData.items[item] + "</li>";
+        let realData = data.data;
+        for (let heading in realData) {
+            document.getElementById("guide-content").innerHTML += `<ul class="dropdown"><h2 class="dropdown-toggle">${realData[heading].name}</h2><div class="dropdown-content" id="${heading}">`;
+            for (let subheading in realData[heading]["subheadings"]) {
+                document.getElementById(`${heading}`).innerHTML += `<h3>${realData[heading]["subheadings"][subheading].name}</h3>`;
+                for (let item in realData[heading]["subheadings"][subheading]["items"]) {
+                    document.getElementById(`${heading}`).innerHTML += `<li>${realData[heading]["subheadings"][subheading]["items"][item]}</li>`;
                 }
+                document.getElementById("guide-content").innerHTML += `</div>`;
             }
-            document.getElementById("guide-content").innerHTML += "</div></ul>";
+            document.getElementById("guide-content").innerHTML += `</ul>`;
         }
-    } catch (err) {
-        console.error("Error loading guide:", err);
     }
-}
+} 
 
-window.onload = async () => {
-    if (isValidTitle(title)) {
-        await loadGuide();
-    } else {
-        getSubmissions();
-    }
+window.onload = async function() {
+    await getSubmissions();
+    await loadGuide();
+    
+    const dropdowns = document.querySelectorAll(".dropdown-toggle");
 
-    const guideContent = document.getElementById("guide-content");
-
-    guideContent.addEventListener("click", (event) => {
-        if (event.target.classList.contains("dropdown-toggle")) {
-            const dropdown = event.target.closest(".dropdown");
+    dropdowns.forEach(toggle => {
+        toggle.addEventListener("click", function() {
+            const dropdown = toggle.closest(".dropdown");
             dropdown.classList.toggle("active");
 
             const footer = document.querySelector(".footer");
             const body = document.body;
+            const isContentShort = body.scrollHeight <= window.innerHeight;
 
-            if (body) {
-                const isContentShort = body.scrollHeight <= window.innerHeight;
-
-                if (isContentShort) {
-                    footer.style.position = "fixed";
-                    footer.style.bottom = "0";
-                    footer.style.left = "0";
-                    footer.style.width = "100%";
-                    body.style.overflow = 'hidden';
-                } else {
-                    footer.style.position = "relative";
-                    body.style.overflow = 'auto';
-                }
+            if (isContentShort) {
+                footer.style.position = "fixed";
+                footer.style.bottom = "0";
+                footer.style.left = "0";
+                footer.style.width = "100%";
+                body.style.overflow = 'hidden';
+            } else {
+                footer.style.position = "relative";
+                body.style.overflow = 'auto';
             }
-        }
+        });
     });
+    
 };
