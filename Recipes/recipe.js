@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
         toggle.addEventListener("click", () => {
             const dropdown = toggle.closest(".dropdown");
             dropdown.classList.toggle("active");
-            
+
             const footer = document.querySelector(".footer");
             const body = document.body;
             const isContentShort = body.scrollHeight <= window.innerHeight;
@@ -19,9 +19,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 body.style.overflow = 'hidden';
             } else {
                 footer.style.position = "relative";
-                
+                body.style.overflow = 'auto';
             }
-            body.style.overflow = 'scroll';
         });
     });
 });
