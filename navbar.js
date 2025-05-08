@@ -79,10 +79,3 @@ function denyCookies() {
     alert("You denied cookies. This page will now close.");
     window.location.href = "https://www.google.com";
 }
-
-window.onload = () => {
-    const cookieBanner = document.getElementById("cookie-consent");
-    if (!getCookie("cookiesAccepted") && cookieBanner) {
-        cookieBanner.style.display = "block";
-    }
-};
