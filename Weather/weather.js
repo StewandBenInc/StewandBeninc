@@ -46,7 +46,7 @@ async function getWeather(lat, lon) {
 // function handleResponse(data) {
 //     console.log("Geocoding data:", data);
 //     if (data.result && data.result.addressMatches.length > 0) {
-//         const matches = data.result.addressMatches;
+//         const matches = data.result.addressMatches; 
 //         console.log("Address matches:", matches);
 //         let cords = matches[0].coordinates;
 //         getWeather(parseFloat(cords.y.toFixed(4)), parseFloat(cords.x.toFixed(4)));

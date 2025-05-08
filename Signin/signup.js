@@ -35,6 +35,7 @@ function submit() {
         calendar: document.getElementById('calendarinput').value,
         email: document.getElementById('email').value,
         admin: false,
+        idiot: false,
         mvp: false
     };
 
@@ -60,6 +61,11 @@ async function login() {
                 document.cookie = `admin=true; path=/;`;
             } else {
                 document.cookie = `admin=false; path=/;`;
+            }
+            if (data.data().idiot) {
+                document.cookie = `idiot=true; path=/;`;
+            } else {
+                document.cookie = `idiot=false; path=/;`;
             }
             if (data.data().mvp) {
                 document.cookie = `mvp=true; path=/;`;

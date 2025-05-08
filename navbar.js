@@ -22,7 +22,10 @@ document.addEventListener("DOMContentLoaded", () => {
             }
             if(getCookie("mvp") === "true" || getCookie("admin") === "true") { 
                 document.getElementById('mvp').style.display = "inline-block";
-
+            }
+            if(getCookie("idiot") === "true"){
+                document.getElementById('mvp').style.display = "inline-block";
+                console.log("youre an idiot");
             }
             attachNavbarEvents(); // Reattach event listeners after inserting the HTML
         });
