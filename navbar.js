@@ -27,10 +27,15 @@ document.addEventListener("DOMContentLoaded", () => {
             attachNavbarEvents(); // Reattach event listeners after inserting the HTML
         });
     fetch("/FooterAndNav/cookie.html")
-        .then(response => response.text())
-        .then(data => {
-            document.body.insertAdjacentHTML("beforeend", data);
-        });
+    .then(response => response.text())
+    .then(data => {
+        document.body.insertAdjacentHTML("beforeend", data);
+        console.log(getCookie("cookiesAccepted"))
+        if (getCookie("cookiesAccepted") === "true") {
+            document.getElementById("cookie-consent").style.display = "none";
+            console.log("Cookies accepted");
+        }
+    }); 
 });
 
 function attachNavbarEvents() {
