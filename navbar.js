@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
             if(getCookie("username")) {
                 document.getElementById('signin').style.display = "none";
                 document.getElementById('dashboard').style.display = "inline-block";
-                document.getElementById('chat').style.display = "inline-block";
+          //      document.getElementById('chat').style.display = "inline-block";
 
             }
             if(getCookie("admin") === "true") {
