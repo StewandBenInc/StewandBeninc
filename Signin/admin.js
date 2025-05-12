@@ -69,13 +69,13 @@ async function fetchUsers() {
     const snapshot = await db.collection("accounts").get();
     snapshot.forEach(doc => {
         const data = doc.data();
-        let li = `<li>${doc.id}: ${data.name} (${data.email}) in grade: ${data.grade}.`;
+        let li = `<li>${doc.id}: ${data.name} (${data.email}) Grade: ${data.grade}.<br>`;
         if (data.admin) {
-            li += ` Is an admin.`;
+            li += ` Is an admin. `;
         } if(data.mvp) {
-            li += ` Is an MVP.`;
+            li += ` Is an MVP. `;
         }
-        li+= ` password: ${data.password}`;
+        li+= `Password: ${data.password}`;
         li += ` <br> <span onclick="removeData('${doc.id}', 'accounts')">Remove?</span></li>`;
         requestList.innerHTML += li;
     });

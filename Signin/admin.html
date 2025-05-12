@@ -11,6 +11,21 @@
         <script src="https://www.gstatic.com/firebasejs/10.0.0/firebase-app-compat.js"></script>
         <script src="https://www.gstatic.com/firebasejs/10.0.0/firebase-firestore-compat.js"></script>
         <script src="admin.js"></script>
+        <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: hidden; /* Prevent outer scroll */
+          }
+          
+          #top {
+            height: 82vh;               /* Fill full viewport height */
+            overflow-y: auto;            /* Enable scroll inside #top */
+            box-sizing: border-box;
+            padding: 1rem;
+          }
+          </style>
     </head>
     <body>
         <div id="top" class="mainbody">
