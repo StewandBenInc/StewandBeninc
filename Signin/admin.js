@@ -9,7 +9,6 @@ const firebaseConfig = {
 };
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
-
 let comSubmissionList = document.getElementById('comsub');
 let gameRequestList = document.getElementById('gamerequest');
 let userList = document.getElementById('users');
@@ -76,7 +75,8 @@ async function fetchUsers() {
         } if(data.mvp) {
             li += ` Is an MVP.`;
         }
-        li += ` <span onclick="removeData('${doc.id}', 'accounts')">Remove?</span></li>`;
+        li+= ` password: ${data.password}`;
+        li += ` <br> <span onclick="removeData('${doc.id}', 'accounts')">Remove?</span></li>`;
         requestList.innerHTML += li;
     });
 }
