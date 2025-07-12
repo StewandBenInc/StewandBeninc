@@ -17,6 +17,7 @@ function getSubmissions() {
     if (title === "null") {
         list = document.getElementById("guide-list");
         db.collection("users").get()
+        db.collection("users").orderBy(firebase.firestore.FieldPath.documentId()).get()
         .then(snapshot => {
         snapshot.forEach(doc => {
             console.log(doc);
@@ -30,25 +31,40 @@ function getSubmissions() {
 }
 
 async function loadGuide() {
+    console.log("notin");
     if (title !== "null") {
-        const doc = await db.collection("users").doc(title).get()
+        console.log("in");
+        const doc = await db.collection("users").doc(title).get(); 
         let data = doc.data();
-        document.getElementById("title").innerHTML = `©Stew and Ben inc.®™ | Community Submitted Guide | ${doc.id} by ${data.name}`;
+        console.log(data);
+        document.getElementById("title").innerHTML = `©Stew and Ben inc.®™ | Community Submitted Guide | ${doc.id} by ${data.name}`; 
         document.getElementById("name").innerHTML = `${doc.id} by ${data.name}`;
         let realData = data.data;
-        for (let heading in realData) {
+
+        const headingKeys = Object.keys(realData).sort((a, b) => a.localeCompare(b));
+        headingKeys.forEach(heading => {
             document.getElementById("guide-content").innerHTML += `<ul class="dropdown"><h2 class="dropdown-toggle">${realData[heading].name}</h2><div class="dropdown-content" id="${heading}">`;
-            for (let subheading in realData[heading]["subheadings"]) {
+
+            const subKeys = Object.keys(realData[heading]["subheadings"]).sort((a, b) => a.localeCompare(b));
+            subKeys.forEach(subheading => {
                 document.getElementById(`${heading}`).innerHTML += `<h3>${realData[heading]["subheadings"][subheading].name}</h3>`;
-                for (let item in realData[heading]["subheadings"][subheading]["items"]) {
-                    document.getElementById(`${heading}`).innerHTML += `<li>${realData[heading]["subheadings"][subheading]["items"][item]}</li>`;
-                }
-                document.getElementById("guide-content").innerHTML += `</div>`;
-            }
+
+                const items = realData[heading]["subheadings"][subheading]["items"];
+                const itemKeys = Array.isArray(items) ? Object.keys(items) : Object.keys(items).sort((a, b) => a.localeCompare(b)); 
+
+                itemKeys.forEach(item => {
+                    const value = Array.isArray(items) ? items[item] : items[item];
+                    document.getElementById(`${heading}`).innerHTML += `<li>${value}</li>`;
+                });
+
+                document.getElementById("guide-content").innerHTML += `</div>`; 
+            });
+
             document.getElementById("guide-content").innerHTML += `</ul>`;
-        }
+        });
     }
-} 
+}
+
 
 window.onload = async function() {
     getSubmissions();
