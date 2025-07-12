@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
     const dropdowns = document.querySelectorAll(".dropdown-toggle");
-
+    //equivalent to notes.js
     // biome-ignore lint/complexity/noForEach: <explanation>
     dropdowns.forEach(toggle => {
         toggle.addEventListener("click", () => {

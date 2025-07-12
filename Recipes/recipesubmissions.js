@@ -1,3 +1,4 @@
+//equivalent to submissions.js
 const firebaseConfig = {
     apiKey: "AIzaSyD3TekvWYk7yGLcmX3P6L-UF3Y9BrF7T94",
     authDomain: "stewandbeninc-d4f92.firebaseapp.com",
@@ -13,21 +14,21 @@ const db = firebase.firestore();
 const params = new URLSearchParams(window.location.search);
 const title = params.get("name");
 
-async function getSubmissions() {
+function getSubmissions() {
     if (title === "null") {
         list = document.getElementById("guide-list");
-        const snapshot = await db.collection("recipes").get()
-        console.log(snapshot);
+        db.collection("recipes").get()
+        .then(snapshot => {
         snapshot.forEach(doc => {
             console.log(doc);
             list.innerHTML += `<li><a href="recipetemplate.html?name=${doc.id}"><h3>${doc.id} by, ${doc.data().name} Subject: ${doc.data().subject}</h3></a></li>`;
+        });
         })
         .catch(error => {
         console.error("Error fetching data: ", error);
         });
     }
 }
-
 async function loadGuide() {
     console.log("notin")
     if (title !== "null") {
@@ -35,7 +36,7 @@ async function loadGuide() {
         const doc = await db.collection("recipes").doc(title).get()
         let data = doc.data();
         console.log(data);
-        document.getElementById("title").innerHTML = `©Stew and Ben inc.®™ | Community Submitted Recipe | ${doc.id} by ${data.name}`;
+        document.getElementById("title").innerHTML = `©Stew and Ben inc.®™ | Community Submitted Recipes | ${doc.id} by ${data.name}`;
         document.getElementById("name").innerHTML = `${doc.id} by ${data.name}`;
         let realData = data.data;
         for (let heading in realData) {
@@ -53,7 +54,7 @@ async function loadGuide() {
 } 
 
 window.onload = async function() {
-    await getSubmissions();
+     getSubmissions();
     await loadGuide();
     
     const dropdowns = document.querySelectorAll(".dropdown-toggle");

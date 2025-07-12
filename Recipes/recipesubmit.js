@@ -1,7 +1,7 @@
 let headingCoonter = 1;
 let subheadingCoonter = [1];
 let itemCoonter = [[1]];
-
+//equivalent to community.js
 const firebaseConfig = {
     apiKey: "AIzaSyD3TekvWYk7yGLcmX3P6L-UF3Y9BrF7T94",
     authDomain: "stewandbeninc-d4f92.firebaseapp.com",
