@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
             document.body.insertAdjacentHTML("afterbegin", data);
             if(getCookie("username")) {
                 document.getElementById('signin').style.display = "none";
-                document.getElementById('submit').style.display = "none";
+                document.getElementById('submit').style.display = "inline-block";
                 document.getElementById('recipe').style.display = "none";
                 document.getElementById('dashboard').style.display = "inline-block";
                 document.getElementById('recipesubmit').style.display = "inline-block";
