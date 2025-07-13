@@ -6,9 +6,35 @@
     <link rel="icon" type="image/x-icon" href="/logo.png">
     <link rel="stylesheet" href="/style.css">
     <title>©Stew and Ben inc.®™</title>
+    <script src="https://chitchatter.im/sdk.js" defer></script>
 </head>
 <body>
     <script src="/navbar.js"></script>
-    <iframe src="https://chitchatter.im/public/153e73e9-a718-4ae3-a462-dca1d3b8dee4?embed=1" allow="camera;microphone;display-capture;fullscreen" width="100%" style="margin-top: 60px;" height="800">
+<chat-room
+  room="stewandbeninc"                  
+  root-url="https://chitchatter.im/"  
+  play-message-sound="true"   
+  color-mode="dark"         
+  height="960"
+  width="100%"
+  style="border:none;"
+></chat-room>
+<script>
+  function getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+  }
+
+  window.addEventListener('DOMContentLoaded', () => {
+    const username = getCookie("username");
+    if (username) {
+      const chat = document.querySelector('chat-room');
+      if (chat) {
+        chat.setAttribute('user-name', username);
+      }
+    }
+  });
+</script>
 </body>
 </html>
