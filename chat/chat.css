@@ -1,0 +1,74 @@
+* {
+    border: 0;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: rgb(50, 50, 50);
+    font-family: Lato, Helvetica, Arial, sans-serif;
+    color: azure;
+}
+
+a {
+    color: inherit;
+    font-family: inherit;
+    font-size: inherit;
+    text-decoration: none;
+}
+
+h1 {
+    display: flex;
+    justify-content: center;
+    margin-top: 100px;
+    font-size: 64px;
+}
+
+.main {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: baseline;
+    margin-top: 60px;
+}
+
+input[type="text"] {
+    width: 200px;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: none;
+}
+
+.Create {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    border-radius: 10px;
+    border: 2px solid azure;
+    width: 450px;
+    height: 205px;
+}
+
+select {
+    width: 200px;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: none;
+}
+
+.Join {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    border-radius: 10px;
+    border: 2px solid azure;
+    position: relative;
+width: 450px;
+    height: 205px;
+}
