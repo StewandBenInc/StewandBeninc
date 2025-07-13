@@ -8,18 +8,6 @@
         </div>
         <ul id="menu">
             <li>
-                <div class="top-menu">
-                   <!-- <span>
-                        <a>Recipes</a>
-                    </span>
-                    <div class="top-menu-content">
-                        <a href="/Recipes/recipe.html">Submit One</a>
-                        <a href="/Recipes/recipesubmissions.html?name=null" id="bottomitem">Submissions</a>
-                    </div>
-                    -->
-                </div>
-            </li>
-            <li>
                 <a href="/dictionary.html">Dictionary</a>
             </li>
             <li>
@@ -33,7 +21,7 @@
                         <a href="/StudyGuides/Science/science.html">Science</a>
                         <a href="/StudyGuides/Mandarin/Mandarin.html">Mandarin</a>
                         <a href="/StudyGuides/spanish/spanish.html">Spanish</a>
-                        <a href="/StudyGuides/community.html">Submit</a>
+                        <a style="display: none;" id="submit" href="/StudyGuides/community.html">Submit</a>
                         <a href="/StudyGuides/submissions.html?name=null" id="bottomitem">Submissions</a>
                     </div>
                 </div>
@@ -41,8 +29,11 @@
             <li>
                 <a href="/Weather/weather.html">Weather</a>
             </li>
-          <li>
-            <div class="top-menu">
+            <li>  
+                <a id="recipe" href="/Recipes/recipesubmissions.html">Recipes</a>
+            </li>
+            <li>
+            <div id="recipesubmit" style="display: none;" class="top-menu">
                     <span>
                         <a>Recipes</a>
                     </span>

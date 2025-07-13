@@ -296,5 +296,13 @@ function clearData() {
     localStorage.removeItem('items');
     location.reload();
 }
-
+function checkAccount() {
+    if(getCookie("username")) {
+        console.log("Account exists");
+    }
+    else {
+        window.location.href = "/Signin/notallowed.html";
+    }
+};
+window.onload = checkAccount()
 window.onload = setTimeout(function() {loadData();}, 100)
