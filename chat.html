@@ -35,6 +35,16 @@
       }
     }
   });
+  function checkAccount() {
+    if(getCookie("username")) {
+        console.log("Account exists");
+    }
+    else {
+        window.location.href = "/Signin/notallowed.html";
+    }
+};
+window.onload = checkAccount()
 </script>
+
 </body>
 </html>

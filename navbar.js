@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 document.getElementById('recipe').style.display = "none";
                 document.getElementById('dashboard').style.display = "inline-block";
                 document.getElementById('recipesubmit').style.display = "inline-block";
-
+                document.getElementById('chat').style.display = "inline-block";
                 console.log("dashboard shown");
             }
             if(getCookie("admin") === "true") {
