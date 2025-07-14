@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>©Stew and Ben inc.®™ | Study Guides | Submit a Study Guide</title>
+        <link rel="icon" type="image/x-icon" href="/logo.png">
+        <link rel="stylesheet" href="/style.css">
+        <script src="/navbar.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/10.0.0/firebase-app-compat.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/10.0.0/firebase-firestore-compat.js"></script>
+        <script src="feedback.js"></script>
+        <script src="/footer.js"></script>
+    </head>
+    <body>
+        <div class="mainbody" style="margin-top: 75px;">
+            <h1>Feedback</h1>
+            <p>Give us feedback on what to do better</p>
+            <input type="text" id="name" required oninput="collectData(false,true)" placeholder="First and Last Name">
+            <br>
+            <input type="text" id="email" required oninput="collectData(false,true)" placeholder="Email Address">
+            <br>
+            <input type="text" id="title" required oninput="collectData(false,true)" placeholder="Topic of Feedback">
+            <br>
+            <div id="givenFeedback">
+                <input type="text" id="heading1" class="heading" oninput="collectData(false,true)" required placeholder="Feedback">
+            </div>
+            <br>
+            <br>
+            <button id="submit" onclick="collectData(true, false)" onclick="clearData()">Submit</button>
+            <br>
+            <br>
+            <button id="clear" onclick="clearData()">Clear</button>
+        </div>
+    </body>
+</html>
