@@ -80,7 +80,15 @@ async function fetchUsers() {
         requestList.innerHTML += li;
     });
 }
-
+async function fetchFeedback() {
+    let requestList = document.getElementById('feedback');
+    const snapshot = await db.collection("feedback").get();
+    snapshot.forEach(doc => {
+        const data = doc.data();
+        let li = `<li>${data.name} (${data.email}): ${doc.id}:${data.heading1} <span onclick="removeData('${doc.id}', 'feedback')">Remove?</span></li>`;
+        requestList.innerHTML += li;
+    });
+}
 function checkAdmin() {
     const cookies = document.cookie.split(';');
     let done = false;
@@ -110,5 +118,6 @@ window.onload = async () => {
     await fetchGameRequests();
     await fetchUsers();
     await fetchRecipeSubmissions();
+    await fetchFeedback();
     console.log("All data fetched");
 }
