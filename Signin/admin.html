@@ -26,37 +26,80 @@
             box-sizing: border-box;
             padding: 1rem;
         }
+
+        h2 {
+            display: none;
+        }
+
+        .pages {
+            display: flex;
+            flex-direction: column;
+            margin-right: 5%;
+            margin-left: 3%;
+            text-align: center;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            margin-top: 25px;
+            background-color: #979797;
+            flex: 0 0 250px;
+        }
+
+        .mainContent {
+            flex-direction: column;
+        }
+
+        .center {
+            display: flex;
+            align-items: flex-start;
+            /* optional: aligns to top */
+        }
     </style>
 </head>
 
 <body>
     <div style="margin-bottom: 15px;" id="top" class="mainbody">
-        <h1>Admin</h1>
+        <a href="admin.html"><h1>Admin</h1></a>
         <p>Welcome to the admin page. Here you can manage the website.</p>
         <br>
-        <div style="text-align: left;">
-            <div id="request">
-                <h3>Requests:</h3>
+        <div class="center">
+            <div class="pages">
+                <a href="admin.html?page=gamesAndSuggestions">Requested Additions</a>
+                <br>
+                <a href="admin.html?page=subsAndRecipes">Community Submissions</a>
+                <br>
+                <a href="admin.html?page=users">Users</a>
             </div>
-            <br>
-            <div id="comsub">
-                <h3>Community Submissions:</h3>
-            </div>
-            <br>
-            <div id="gamerequest">
-                <h3>Game Requests:</h3>
-            </div>
-            <br>
-            <div id="recipes">
-                <h3>Recipes:</h3>
-            </div>
-            <br>
-            <div id="feedback"> 
-                <h3>Feedback:</h3>
-            </div>
-            <br>
-            <div id="users">
-                <h3>Users:</h3>
+            <div class="mainContent" style="display: flex; text-align: left;">
+                <div style="display: flex; flex-direction: column;" id="gamesAndSuggestions">
+                    <h2>Requested Additions</h2>
+                    <div id="request">
+                        <h3>Requests:</h3>
+                    </div>
+                    <br>
+                    <div id="feedback">
+                        <h3>Feedback:</h3>
+                    </div>
+                    <br>
+                    <div id="gamerequest">
+                        <h3>Game Requests:</h3>
+                    </div>
+                </div>
+                <br>
+                <div style="display: flex; flex-direction: column;" id="subsAndRecipes">
+                    <h2>Community Submissions</h2>
+                    <div id="comsub">
+                        <h3>Community Study Guide Submissions:</h3>
+                    </div>
+                    <br>
+                    <div id="recipes">
+                        <h3>Recipes:</h3>
+                    </div>
+                </div>
+                <br>
+                <div style="display: flex; flex-direction: column;" id="users">
+                    <h3>Users:</h3>
+                </div>
             </div>
         </div>
     </div>

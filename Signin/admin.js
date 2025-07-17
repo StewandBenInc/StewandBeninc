@@ -72,10 +72,11 @@ async function fetchUsers() {
         let li = `<li>${doc.id}: ${data.name} (${data.email}) Grade: ${data.grade}.<br>`;
         if (data.admin) {
             li += ` Is an admin. `;
-        } if(data.mvp) {
+        }
+        if (data.mvp) {
             li += ` Is an MVP. `;
         }
-        li+= `Password: ${data.password}`;
+        li += `Password: ${data.password}`;
         li += ` <br> <span onclick="removeData('${doc.id}', 'accounts')">Remove?</span></li>`;
         requestList.innerHTML += li;
     });
@@ -89,13 +90,14 @@ async function fetchFeedback() {
         requestList.innerHTML += li;
     });
 }
+
 function checkAdmin() {
     const cookies = document.cookie.split(';');
     let done = false;
     for (let i = 0; i < cookies.length; i++) {
         let cookie = cookies[i].trim();
         if (cookie.startsWith("admin" + '=')) {
-            if(cookie.substring(6) === "true") {
+            if (cookie.substring(6) === "true") {
                 console.log("Admin");
                 done = true;
             } else {
@@ -111,12 +113,35 @@ function checkAdmin() {
     }
 }
 
+function changePage() {
+    const params = new URLSearchParams(window.location.search);
+    const page = params.get("page");
+    if (page == "gamesAndSuggestions") {
+        document.getElementById('users').style.display = "none";
+        document.getElementById('subsAndRecipes').style.display = "none";
+        document.getElementById('gamesAndSuggestions').style.display = "flex";
+        console.log("games page shown");
+
+    } else if (page == "subsAndRecipes") {
+        document.getElementById('users').style.display = "none";
+        document.getElementById('subsAndRecipes').style.display = "flex";
+        document.getElementById('gamesAndSuggestions').style.display = "none";
+        console.log("Subs page shown");
+
+    } else if (page == "users") {
+        document.getElementById('users').style.display = "flex";
+        document.getElementById('subsAndRecipes').style.display = "none";
+        document.getElementById('gamesAndSuggestions').style.display = "none";
+        console.log("Users page shown");
+    }
+}
 window.onload = async () => {
     checkAdmin();
+    await changePage();  
+    await fetchUsers();
     await fetchRequests();
     await fetchComSubmissions();
     await fetchGameRequests();
-    await fetchUsers();
     await fetchRecipeSubmissions();
     await fetchFeedback();
     console.log("All data fetched");
