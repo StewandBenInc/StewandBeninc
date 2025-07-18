@@ -17,12 +17,13 @@
         body {
             height: 100%;
             margin: 0;
+            overflow-y: auto;
             padding: 0;
         }
 
         #top {
-            height: 81.35vh;
-            overflow-y: auto;
+            min-height: 81.35vh;
+            height:auto;
             box-sizing: border-box;
             padding: 1rem;
         }
@@ -47,11 +48,18 @@
 
         .mainContent {
             flex-direction: column;
+                        line-height: 150%;
+
         }
 
         .center {
             display: flex;
             align-items: flex-start;
+        }
+
+        #users {
+            display: flex;
+            flex-direction: column;
         }
     </style>
 </head>
@@ -98,7 +106,7 @@
                     </div>
                     <br>
                 </div>
-                <div style="display: flex; flex-direction: column;" id="users">
+                <div id="users">
                     <h3>Users:</h3>
                 </div>
             </div>

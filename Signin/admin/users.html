@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title id="title">©Stew and Ben inc.®™ | Admin</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="/logo.png">
+    <link rel="stylesheet" href="/style.css">
+    <script src="/navbar.js"></script>
+    <script src="/footer.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.0.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.0.0/firebase-firestore-compat.js"></script>
+    <script src="users.js"></script>
+</head>
+
+<body>
+    <div style="margin-bottom: 15px;" id="top" class="mainbody">
+        <a href="admin.html">
+            <h1>Users</h1>
+        </a>
+        <p>Welcome to the users page. Here you can edit the user accounts.</p>
+        <br>
+        <div class="center">
+            <h3>Editing, <span id="user"></span></h3>
+            <br>
+            <h4>Update Username (<span id="currentusername"></span>):</h4>
+            <input type="text" name="username" id="username" placeholder="Update username" required>
+            <br>
+            <button onclick="usernameChange()">Update</button>
+            <br>
+            <br>
+            <h4>Update Name (<span id="currentname"></span>):</h4>
+            <input type="text" name="name" id="name" placeholder="Update name" required>
+            <br>
+            <button onclick="nameChange()">Update</button>
+            <br>
+            <br>
+            <h4>Update Email (<span id="currentemail"></span>):</h4>
+            <input type="text" name="email" id="email" placeholder="Update email" required>
+            <br>
+            <button onclick="emailChange()">Update</button>
+            <br>
+            <br>
+            <h4>Update Grade (<span id="currentgrade"></span>):</h4>
+            <input type="text" name="grade" id="grade" placeholder="Update grade" required>
+            <br>
+            <button onclick="gradeChange()">Update</button>
+            <br>
+            <br>
+            <h4>Update Calendar Link (<span id="currentcalendar"></span>):</h4>
+            <input type="text" name="calendar" id="cal" placeholder="Update calendar" required>
+            <br>
+            <button onclick="calChange()">Update</button>
+            <br>
+            <br>
+            <button onclick="signOut()">Sign Out</button>
+            <br>
+            <br>
+            <button onclick="deleteAccount()" style="background-color: red;">Delete Account</button>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -77,7 +77,7 @@ async function fetchUsers() {
             li += ` Is an MVP. `;
         }
         li += `Password: ${data.password}`;
-        li += ` <br> <span onclick="removeData('${doc.id}', 'accounts')">Remove?</span></li>`;
+        li += ` <br> <a href="/signin/admin/users.html?user=${doc.id}">Edit ${doc.id}'s Account</a></li><br>`;
         requestList.innerHTML += li;
     });
 }
