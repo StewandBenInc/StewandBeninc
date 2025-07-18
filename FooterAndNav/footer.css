@@ -9,6 +9,7 @@ html, body {
     width: 100%;
     box-sizing: border-box;
     text-align: center;
+    margin-top: 10px;
 }
 
 .footerlist {
@@ -33,3 +34,8 @@ html, body {
     color: #ffffff;
     text-decoration: none;
 }
+#page-wrapper {
+    min-height: 100%;
+    position: relative;
+}
+
