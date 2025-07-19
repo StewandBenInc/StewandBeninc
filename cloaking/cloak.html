@@ -1,0 +1,37 @@
+<div id="overlay">
+<h3>Would you like to enable tab cloaking?</h3>
+  <button onclick="toggleCloak()">Yes</button>
+<script>
+function getCookie(cname) {
+                let name = cname + "=";
+                let decodedCookie = decodeURIComponent(document.cookie);
+                let ca = decodedCookie.split(';');
+                for(let i = 0; i <ca.length; i++) {
+                    let c = ca[i];
+                    while (c.charAt(0) == ' ') {
+                    c = c.substring(1);
+                    }
+                    if (c.indexOf(name) == 0) {
+                    return c.substring(name.length, c.length);
+                    }
+                }
+                return "";
+            }
+            function toggleCloak(){
+                if (getCookie("cloak")){
+                    document.cookie = "cloak=";
+                    window.doCloak = false;
+                    window.open(window.location);
+                    window.open("https://google.com", "_top");
+                }
+                else{
+                    document.cookie = "cloak=1";
+                    window.doCloak = true;
+                    window.location.reload();
+                }
+            }
+        
+</script>
+</a>
+<button onclick="off()">No</button>
+</div>
