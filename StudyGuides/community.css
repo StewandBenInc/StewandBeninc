@@ -80,7 +80,7 @@ h2 {
     margin-bottom: 10px;
 }
 
-h3 {
+:not(.randomClassNameToTestIfChangingThisWorks) h3 {
     margin-top: 10px;
     color: #555;
 }
