@@ -26,12 +26,12 @@ document.addEventListener("DOMContentLoaded", () => {
                 document.getElementById('admin').style.display = "inline-block";
             }
             if (getCookie("mvp") === "true" || getCookie("admin") === "true") {
-                document.getElementById('mvp').style.display = "inline-block";
+                document.getElementById('funtimes').style.display = "inline-block";
                 document.getElementById('cloak').style.display = "inline-block";
 
             }
             if (getCookie("idiot") === "true") {
-                document.getElementById('mvp').style.display = "inline-block";
+                document.getElementById('funtimes').style.display = "inline-block";
                 document.getElementById('cloak').style.display = "inline-block";
 
                 console.log("youre an idiot");
