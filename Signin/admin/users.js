@@ -29,6 +29,8 @@ async function fillIn() {
             document.getElementById("currentemail").innerHTML = data.data().email;
             document.getElementById("currentgrade").innerHTML = data.data().grade;
             document.getElementById("currentcalendar").innerHTML = data.data().calendar;
+            document.getElementById("currentpassword").innerHTML = data.data().password;
+            
         }).catch((error) => {
             console.error("Error getting document:", error);
         });
@@ -50,7 +52,7 @@ function signOut() {
 }
 
 async function deleteAccount() {
-    if(confirm("Are you sure you want to delete your account? This action cannot be undone.")) {
+    if(confirm("Are you sure you want to delete their account? This action cannot be undone.")) {
         if (userEditing) {
             await db.collection("accounts").doc(userEditing).delete().then(() => {
                 alert("Document successfully deleted!");
@@ -100,6 +102,18 @@ async function emailChange() {
     }
 }
 
+async function passwordChange() {
+    if (userEditing) {
+        await db.collection("accounts").doc(userEditing).update({
+            password: document.getElementById("password").value
+        }).then(() => {
+            alert("Password successfully changed!");
+        }).catch((error) => {
+            console.error("Error changing Password: ", error);
+        });
+        location.reload();
+    }
+}
 async function gradeChange() {
     if (userEditing) {
         await db.collection("accounts").doc(userEditing).update({
