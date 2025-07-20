@@ -7,7 +7,47 @@ function getCookie(name) {
     }
     return null;
 }
+const availArrayOps = [{
+        name: "weather",
+        signinReq: false
+    }, {
+        name: "9thGradeStudyGuides",
+        signinReq: false
+    }, {
+        signinReq: false,
+        name: "8thGradeStudyGuides"
+    }, {
+        signinReq: false,
+        name: "studyGuideSubmissions"
+    },
+    {
+        signinReq: false,
+        name: "planner"
+    }, {
+        signinReq: false,
+        name: "dictionary"
+    }, {
+        signinReq: false,
+        name: "studying"
+    },
+    {
+        signinReq: true,
+        name: "Chat"
+    },
+    {
+        signinReq: true,
+        name: "allRecipes"
+    },
+    {
+        signinReq: true,
+        name: "submitARecipe"
+    },
+    {
+        signinReq: true,
+        name: "dashboard"
+    }
 
+]
 document.addEventListener("DOMContentLoaded", () => {
     fetch("/FooterAndNav/navbar.html")
         .then(response => response.text())
@@ -18,7 +58,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 document.getElementById('submit').style.display = "inline-block";
                 document.getElementById('recipe').style.display = "none";
                 document.getElementById('dashboard').style.display = "inline-block";
-                document.getElementById('recipesubmit').style.display = "inline-block";
+                document.getElementById('allRecipes').style.display = "inline-block";
+                document.getElementById('submitARecipe').style.display = "inline-block";
                 document.getElementById('chat').style.display = "inline-block";
                 console.log("dashboard shown");
             }
@@ -31,11 +72,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
             }
             if (getCookie("idiot") === "true") {
-                document.getElementById('funtimes').style.display = "inline-block";
+                document.getElementById('mvp').style.display = "inline-block";
                 document.getElementById('cloak').style.display = "inline-block";
 
                 console.log("youre an idiot");
             }
+            for (let i = 0; i < availArrayOps.length; i++) {
+                const name = availArrayOps[i].name;
+                const el = document.getElementById(name);
+                const cookieVal = getCookie(name);
+                if (cookieVal == "false") {
+                    el.style.display = "none";
+                }
+            }
+
             attachNavbarEvents(); // Reattach event listeners after inserting the HTML
         });
     fetch("/FooterAndNav/cookie.html")

@@ -16,34 +16,63 @@ function getCookie(cname) {
 
 function toggleNav(option) {
     console.log(option)
-    if (getCookie(option) == false) {
-        document.cookie = `${option[i]}=true; path=/;`;
-        document.getElementById(option[i]).style.backgroundColor = "green";
-        console.log(`${option[i]} set to true`)
+    if (getCookie(option) == "false") {
+        document.cookie = `${option}=true; path=/;`;
+        document.getElementById(`${option}btn`).style.backgroundColor = "green";
+        window.alert(`${option} set to true`)
 
-    } else if (getCookie(option[i]) == true) {
-        document.cookie = `${option[i]}=false; path=/;`;
-        document.getElementById(option[i]).style.backgroundColor = "red";
+    } else {
+        document.cookie = `${option}=false; path=/;`;
+        document.getElementById(`${option}btn`).style.backgroundColor = "red";
 
-        console.log(`${option[i]} set to false`)
+        window.alert(`${option} set to false`)
     }
 }
 
-const availArrayOps = [{
-    name: "Weather",
-    signinReq: false
-}]
-
 function setAvaibleNavOptions(availArrayOps) {
-    let options ="";
+    let options = "";
     for (let i = 0; i < availArrayOps.length; i++) {
         id = availArrayOps[i].name;
+        const displayName = camelToTitleCase(id); // Convert for <p>
+
         console.log(id);
         if (availArrayOps[i].signinReq == false) {
-            options += `<li id="${id}">${id}</li> <button class="toggle-btn" id="${id}btn" onclick="toggleNav(['${id}']); window.alert("Toggled ${id} on the nav bar");">Toggle</button>`
+            options += `<li style="list-style-type:none; display:flex; flex-direction:row;"id="${id}"><button class="toggle-btn" id="${id}btn" onclick="toggleNav('${id}');">Toggle</button><p style="margin-left:10px">${displayName}</p></li><br>`
             console.log(`Added ${id} to the nav bar options`)
-        };
+        } else if (availArrayOps[i].signinReq == true) {
+            if (getCookie("username")) {
+                options += `<li style="list-style-type:none; display:flex; flex-direction:row;"id="${id}"><button class="toggle-btn" id="${id}btn" onclick="toggleNav('${id}');">Toggle</button><p style="margin-left:10px">${displayName}</p></li><br>`
+                console.log(`Added ${id} to the nav bar options`)
+            }
+        }
     };
-    document.getElementById("customOptions").innerHTML = options;
+    if (options == null) {
+        console.log("nothin")
+    } else {
+        document.getElementById("customOptions").innerHTML = options;
+    }
+    setTimeout(() => {
+        for (let i = 0; i < availArrayOps.length; i++) {
+            const id = availArrayOps[i].name;
+            const btn = document.getElementById(`${id}btn`);
+            if (!btn) continue;
 
+            const state = getCookie(id);
+            if (state === "false") {
+                btn.style.backgroundColor = "red";
+            } else {
+                btn.style.backgroundColor = "green";
+            }
+        }
+    }, 0);
+};
+
+function camelToTitleCase(camel) {
+    return camel
+        .replace(/([A-Z])/g, ' $1') // Add space before capital letters
+        .replace(/^./, str => str.toUpperCase()); // Capitalize first letter
+}
+
+window.onload = () => {
+    setAvaibleNavOptions(availArrayOps);
 };
