@@ -163,6 +163,10 @@ function on() {
     document.getElementById("overlay").style.display = "block";
 }
 
+function offUpdate() {
+    document.getElementById("updates").style.display = "none";
+}
+
 function off() {
     document.getElementById("overlay").style.display = "none";
 }
@@ -297,3 +301,21 @@ function toggleCloak() {
         window.location.reload();
     }
 }
+window.addEventListener("load", (event) => {
+    if (getCookie("viewedUpdates")!= "true") {
+        fetch("/update.html")
+            .then(response => response.text())
+            .then(_html => {
+                if (!document.getElementById("updates")) {
+                    document.body.insertAdjacentHTML("beforeend", _html);
+                }
+                const overlayElem = document.getElementById("updates");
+                if (overlayElem) {
+                    overlayElem.style.display = "inline-block";
+                    console.log("Update overlay shown");
+                } else {
+                    console.warn('Overlay element not found.');
+                }
+            });
+    }
+});
