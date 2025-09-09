@@ -302,7 +302,7 @@ function toggleCloak() {
     }
 }
 window.addEventListener("load", (event) => {
-    if (getCookie("viewedUpdates")!= "true") {
+    //if (getCookie("wikiPlea")!= "true") {
         fetch("/update.html")
             .then(response => response.text())
             .then(_html => {
@@ -318,4 +318,5 @@ window.addEventListener("load", (event) => {
                 }
             });
     }
-});
+//}
+);
