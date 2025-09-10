@@ -151,20 +151,23 @@ function collectData(submit, save) {
     let email = document.getElementById("email").value;
     let subject = document.getElementById("subject").value;
     let headings = [];
-    let subheadings = [];
-    let items = [];
+    let subheadings = [[]];
+    let items = [[[]]];
     for (let i = 1; i <= headingCoonter; ++i) {
         headings.push(document.getElementById(`heading${i}`).value);
-        subheadings[i-1] = [];
-        items[i-1] = [];
         for (let j = 1; j <= subheadingCoonter[i-1]; ++j) {
             subheadings[i-1].push(document.getElementById(`subheading${j}heading${i}`).value);
-            items[i-1][j-1] = [];
-            for (let k = 1; k <= itemCoonter[i-1][j-1]; ++k) {
+            for (let k = 1; k < itemCoonter[i-1][j-1]+1; ++k) {
                 items[i-1][j-1].push(document.getElementById(`item${k}subheading${j}heading${i}`).value);
             }
+            items[i-1].push([]);
         }
+        subheadings.push([]);
+        items[i-1].pop();
+        items.push([[]]);
     }
+    items.pop();
+    subheadings.pop();
     if(submit && !save) {
         save = false;
         parseData(title, name, email, subject, headings, subheadings, items);
