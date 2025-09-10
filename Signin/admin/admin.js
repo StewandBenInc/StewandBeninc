@@ -32,8 +32,7 @@ async function fetchRequests() {
 
 async function fetchComSubmissions() {
     let requestList = document.getElementById('comsub');
-    const snapshot = await db.collection("studyGuideSubmitted").get();
-    const snapshotOld = await db.collection("users").get();
+    const snapshot = await db.collection("users").get();
     // biome-ignore lint/complexity/noForEach: <explanation>
     snapshot.forEach(doc => {
         const data = doc.data();
