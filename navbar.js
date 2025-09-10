@@ -302,7 +302,7 @@ function toggleCloak() {
     }
 }
 window.addEventListener("load", (event) => {
-    //if (getCookie("wikiPlea")!= "true") {
+    if (getCookie("admin")!= "true"||getCookie("MVP")) {Í
         fetch("/update.html")
             .then(response => response.text())
             .then(_html => {
@@ -318,5 +318,5 @@ window.addEventListener("load", (event) => {
                 }
             });
     }
-//}
+}
 );
