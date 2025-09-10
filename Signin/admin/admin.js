@@ -36,7 +36,7 @@ async function fetchComSubmissions() {
     // biome-ignore lint/complexity/noForEach: <explanation>
     snapshot.forEach(doc => {
         const data = doc.data();
-        const li = `<li><a href="/StudyGuides/comguidetemp.html?name=${doc.id}">${doc.id} by, ${data.name} (${data.email})</a> <span onclick="removeData('${doc.id}', "studyGuideSubmitted")">Remove?</span></li>`;
+        const li = `<li><a href="/StudyGuides/comguidetemp.html?name=${doc.id}">${doc.id} by, ${data.name} (${data.email})</a> <span onclick="removeData('${doc.id}', "users")">Remove?</span></li>`;
         requestList.innerHTML += li;
     });
 }
