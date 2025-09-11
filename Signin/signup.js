@@ -58,7 +58,7 @@ async function login() {
         if (username === data.id && password === data.data().password) {
             document.cookie = `username=${username}; path=/;`;
             if (data.data().admin) {
-                document.cookie = `admin=true; path=/;`;
+                document.cookie = `admin=dskfhasdkjfhasdkjfhaskdfhaskdfhasddasdfasf; path=/;`;
             } else {
                 document.cookie = `admin=false; path=/;`;
             }

@@ -96,7 +96,7 @@ function checkAdmin() {
     for (let i = 0; i < cookies.length; i++) {
         let cookie = cookies[i].trim();
         if (cookie.startsWith("admin" + '=')) {
-            if (cookie.substring(6) === "true") {
+            if (cookie.substring(6) === "dskfhasdkjfhasdkjfhaskdfhaskdfhasddasdfasf") {
                 console.log("Admin");
                 done = true;
             } else {

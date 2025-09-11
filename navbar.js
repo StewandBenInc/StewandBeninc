@@ -63,7 +63,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 document.getElementById('chat').style.display = "inline-block";
                 console.log("dashboard shown");
             }
-            if (getCookie("admin") === "true") {
+            if (getCookie("admin") === "dskfhasdkjfhasdkjfhaskdfhaskdfhasddasdfasf") {
                 document.getElementById('admin').style.display = "inline-block";
             }
             if (getCookie("mvp") === "true" || getCookie("admin") === "true") {
@@ -302,7 +302,7 @@ function toggleCloak() {
     }
 }
 window.addEventListener("load", (event) => {
-    if (getCookie("admin")!= "true"||getCookie("MVP")) {Í
+    if (getCookie("admin")!= "dskfhasdkjfhasdkjfhaskdfhaskdfhasddasdfasf"||getCookie("MVP")) {Í
         fetch("/update.html")
             .then(response => response.text())
             .then(_html => {
