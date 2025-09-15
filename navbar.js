@@ -66,7 +66,7 @@ document.addEventListener("DOMContentLoaded", () => {
             if (getCookie("admin") === "dskfhasdkjfhasdkjfhaskdfhaskdfhasddasdfasf") {
                 document.getElementById('admin').style.display = "inline-block";
             }
-            if (getCookie("mvp") === "true" || getCookie("admin") === "true") {
+            if (getCookie("mvp") === "true" || getCookie("admin") === "dskfhasdkjfhasdkjfhaskdfhaskdfhasddasdfasf") {
                 document.getElementById('funtimes').style.display = "inline-block";
                 document.getElementById('cloak').style.display = "inline-block";
 
@@ -87,6 +87,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             attachNavbarEvents(); // Reattach event listeners after inserting the HTML
+            updateDisguisedButtonVisibility();
         });
     fetch("/FooterAndNav/cookie.html")
         .then(response => response.text())
@@ -302,7 +303,7 @@ function toggleCloak() {
     }
 }
 window.addEventListener("load", (event) => {
-    if (getCookie("admin")!= "dskfhasdkjfhasdkjfhaskdfhaskdfhasddasdfasf"||getCookie("MVP")) {Í
+    if (getCookie("admin")!= "dskfhasdkjfhasdkjfhaskdfhaskdfhasddasdfasf"||getCookie("MVP")) {
         fetch("/update.html")
             .then(response => response.text())
             .then(_html => {
@@ -310,7 +311,7 @@ window.addEventListener("load", (event) => {
                     document.body.insertAdjacentHTML("beforeend", _html);
                 }
                 const overlayElem = document.getElementById("updates");
-                if (overlayElem) {
+                if (overlayElem&&getCookie("wikiPlea")!="true") {
                     overlayElem.style.display = "inline-block";
                     console.log("Update overlay shown");
                 } else {
@@ -320,3 +321,21 @@ window.addEventListener("load", (event) => {
     }
 }
 );
+function updateDisguisedButtonVisibility() {
+    const disguisedBtn = document.getElementById("disguised");
+    if (getCookie("disguised") == "true") {
+        disguisedBtn.style.display = "block";
+    } else {
+        disguisedBtn.style.display = "none";
+    }
+}
+
+
+function undisguise() {
+    document.cookie = `username=${getCookie("oldUsername")}; path=/;`;
+           document.cookie = `admin=${getCookie("oldAdmin")}; path=/;`;
+           document.cookie = `mvp=${getCookie("oldMvp")}; path=/;`;
+           document.cookie = `idiot=${getCookie("oldIdiot")}; path=/;`;
+           document.cookie = `disguised=; path=/;`;
+           location.reload()
+}

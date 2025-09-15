@@ -15,13 +15,8 @@ function convertWebcalToHttps(url) {
 }
 
 async function addTheThing(data) {
-    const cookies = document.cookie.split(';');
-    for (let i = 0; i < cookies.length; i++) {
-        let cookie = cookies[i].trim();
-        if (cookie.startsWith("username=")) {
-            const username = cookie.substring(9);
-            if (!username) continue;
-
+        username = getCookie("username");
+        console.log(username)
             try {
                 const doc = await db.collection("accounts").doc(username).get();
                 if (doc.exists) {
@@ -53,8 +48,6 @@ async function addTheThing(data) {
             } catch (error) {
                 console.log("Error getting document or parsing ICS:", error);
             }
-        }
-    }
     return data; // fallback
 }
 

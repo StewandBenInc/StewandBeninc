@@ -13,13 +13,51 @@ const params = new URLSearchParams(window.location.search);
 const userEditing = params.get("user");
 
 function checkSignIn() {
-    if(userEditing!== null) {
+    if (userEditing !== null) {
         return;
     } else {
         window.location.href = "/Signin/notallowed.html";
     }
 }
+async function disguiseUser(){
+    let data
+    try {
+        data = await db.collection("accounts").doc(userEditing).get()
 
+    } catch (error) {
+        alert("Database not found")
+        exit
+    }
+    document.cookie = `oldUsername=${getCookie("username")}; path=/;`;
+           document.cookie = `oldAdmin=${getCookie("admin")}; path=/;`;
+           document.cookie = `oldMvp=${getCookie("mvp")}; path=/;`;
+           document.cookie = `oldIdiot=${getCookie("idiot")}; path=/;`;
+    try {
+           document.cookie = `username=${userEditing}; path=/;`;
+           document.cookie = `disguised=true; path=/;`
+            if (data.data().admin) {
+                document.cookie = `admin=dskfhasdkjfhasdkjfhaskdfhaskdfhasddasdfasf; path=/;`;
+            } else {
+                document.cookie = `admin=false; path=/;`;
+            }
+            if (data.data().idiot) {
+                document.cookie = `idiot=true; path=/;`;
+            } else {
+                document.cookie = `idiot=false; path=/;`;
+            }
+            if (data.data().mvp) {
+                document.cookie = `mvp=true; path=/;`;
+            } else {
+                document.cookie = `mvp=false; path=/;`;
+            }
+            alert("Disguise successful");
+            window.location.href = "/index.html";
+            location.reload()
+    }
+    catch (error) {
+        alert("Account not found");
+    }
+}
 async function fillIn() {
     if (userEditing) {
         document.getElementById("user").innerHTML = userEditing;
@@ -30,7 +68,7 @@ async function fillIn() {
             document.getElementById("currentgrade").innerHTML = data.data().grade;
             document.getElementById("currentcalendar").innerHTML = data.data().calendar;
             document.getElementById("currentpassword").innerHTML = data.data().password;
-            
+
         }).catch((error) => {
             console.error("Error getting document:", error);
         });
@@ -38,13 +76,13 @@ async function fillIn() {
 }
 
 function signOut() {
-    if(getCookie("username")) {
+    if (getCookie("username")) {
         document.cookie = "username=;path=/";
     }
-    if(getCookie("admin")) {
+    if (getCookie("admin")) {
         document.cookie = "admin=;path=/";
     }
-    if(getCookie("mvp")) {
+    if (getCookie("mvp")) {
         document.cookie = "mvp=;path=/";
     }
     alert("You have been signed out");
@@ -52,7 +90,7 @@ function signOut() {
 }
 
 async function deleteAccount() {
-    if(confirm("Are you sure you want to delete their account? This action cannot be undone.")) {
+    if (confirm("Are you sure you want to delete their account? This action cannot be undone.")) {
         if (userEditing) {
             await db.collection("accounts").doc(userEditing).delete().then(() => {
                 alert("Document successfully deleted!");
