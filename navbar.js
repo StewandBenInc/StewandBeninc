@@ -71,6 +71,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 document.getElementById('cloak').style.display = "inline-block";
 
             }
+            if (getCookie("username") === "Levi" ) {
+            document.getElementById('anais').style.display = "inline-block";
+            }
             if (getCookie("idiot") === "true") {
                 document.getElementById('mvp').style.display = "inline-block";
                 document.getElementById('cloak').style.display = "inline-block";

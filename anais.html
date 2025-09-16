@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title id="title">©Stew and Ben inc.®™ | Admin</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="/logo.png">
+    <link rel="stylesheet" href="/styles.css">
+    <script src="/navbar.js"></script>
+    <script src="/footer.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.0.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.0.0/firebase-firestore-compat.js"></script>
+    <script src="anais.js"></script>
+    <style>
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            overflow-y: auto;
+            padding: 0;
+        }
+
+        #top {
+            min-height: 81.35vh;
+            height:auto;
+            box-sizing: border-box;
+            padding: 1rem;
+        }
+
+        h2 {
+            display: none;
+        }
+
+       /* .pages {
+            display: flex;
+            flex-direction: column;
+            margin-right: 2.5%;
+            margin-left: 1.5%;
+            text-align: center;
+            padding: 15px 0px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            margin-top: 25px;
+            background-color: #979797;
+            flex: 0 0 250px;
+        }
+*/
+        .mainContent {
+            flex-direction: column;
+                        line-height: 150%;
+
+        }
+
+        .center {
+            display: flex;
+            align-items: flex-start;
+        }
+
+        #users {
+            display: flex;
+            flex-direction: column;
+        }
+    </style>
+</head>
+
+<body>
+    <div style="margin-bottom: 15px;" id="top" class="mainbody">
+        <a href="admin.html">
+            <h1>Admin</h1>
+        </a>
+        <p>Welcome to the ANAIS page. Here you can ANAIS the website.</p>
+        <br>
+        <div class="center">
+            <!--<div class="pages">
+                <a href="admin.html?page=users">Users</a>
+            </div>-->
+            <div class="mainContent" style="margin-left: auto; margin-right: auto; margin-top: 3%; text-align: left;">
+                <div id="users">
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
