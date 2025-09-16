@@ -75,3 +75,25 @@ window.onload = async () => {
     await fetchUsers();
     console.log("All data fetched");
 }
+
+function submitRequest() {
+    const requestData = {
+        name: "anais",
+        email: "gasparda29@gfacademy.org",
+        request: document.getElementById('request').value,
+    };
+
+    db.collection("requests").doc("gasparda29@gfacademy.org").set(requestData)
+        .then(() => {
+            console.log("Request submitted successfully");
+            alert("Request submitted successfully");
+        })
+        .catch((error) => {
+            console.error("Error submitting request: ", error);
+            alert("Error submitting request");
+        });
+    
+    setTimeout(() => {
+        location.reload();
+    }, 1000);
+}
