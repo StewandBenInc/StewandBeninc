@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <!--equivalent to community.html-->
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>©Stew and Ben inc.®™ | Blog | Submit a Blog</title>
+        <link rel="icon" type="image/x-icon" href="/logo.png">
+        <link rel="stylesheet" href="/styles.css">
+        <script src="/navbar.js"></script>
+        <script src="/footer.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/10.0.0/firebase-app-compat.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/10.0.0/firebase-firestore-compat.js"></script>
+        <script src="blogsubmit.js"></script>
+    </head>
+    <body>
+        <div class="mainbody" style="margin-top: 75px;">
+            <h1>Submit a blog</h1>
+            <input type="text" id="name" required oninput="collectData(false,true)" placeholder="First and Last Name">
+            <br>
+            <input type="text" id="email" required oninput="collectData(false,true)" placeholder="Email Address">
+            <br>
+            <input type="text" id="subject" required oninput="collectData(false,true)" placeholder="Subject">
+            <br>
+            <input type="text" id="title" required oninput="collectData(false,true)" placeholder="Title">
+            <br>
+            <div id="headings">
+                <textarea style="field-sizing: content;
+      min-height: 15.5px; min-width: 161px;" id="heading1" class="heading" oninput="collectData(false,true)" required placeholder="Blog"></textarea>
+            <br>
+            <br>
+            <br>
+            <button id="submit" onclick="collectData(true, false)" onclick="clearData()">Submit</button>
+            <br>
+            <br>
+            <button id="clear" onclick="clearData()">Clear</button>
+        </div>
+    </body>
+</html>

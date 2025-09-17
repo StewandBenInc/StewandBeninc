@@ -25,9 +25,6 @@ const availArrayOps = [{
         name: "planner"
     }, {
         signinReq: false,
-        name: "dictionary"
-    }, {
-        signinReq: false,
         name: "studying"
     },
     {
@@ -45,6 +42,13 @@ const availArrayOps = [{
     {
         signinReq: true,
         name: "dashboard"
+    },
+    {
+        signinReq: true,
+        name: "allBlogs"
+    },{
+        signinReq: false,
+        name: "blog"
     }
 
 ]
@@ -61,6 +65,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 document.getElementById('allRecipes').style.display = "inline-block";
                 document.getElementById('submitARecipe').style.display = "inline-block";
                 document.getElementById('chat').style.display = "inline-block";
+                document.getElementById('allBlogs').style.display = "inline-block";
+                document.getElementById('blog').style.display = "none";
                 console.log("dashboard shown");
             }
             if (getCookie("admin") === "dskfhasdkjfhasdkjfhaskdfhaskdfhasddasdfasf") {
@@ -306,7 +312,7 @@ function toggleCloak() {
     }
 }
 window.addEventListener("load", (event) => {
-    if (getCookie("admin")!= "dskfhasdkjfhasdkjfhaskdfhaskdfhasddasdfasf"||getCookie("MVP")) {
+    if (getCookie("updates")!= "true") {
         fetch("/update.html")
             .then(response => response.text())
             .then(_html => {
@@ -314,9 +320,10 @@ window.addEventListener("load", (event) => {
                     document.body.insertAdjacentHTML("beforeend", _html);
                 }
                 const overlayElem = document.getElementById("updates");
-                if (overlayElem&&getCookie("wikiPlea")!="true") {
+                if (overlayElem) {
                     overlayElem.style.display = "inline-block";
                     console.log("Update overlay shown");
+                    document.cookie = "updates=true; path=/;";
                 } else {
                     console.warn('Overlay element not found.');
                 }
