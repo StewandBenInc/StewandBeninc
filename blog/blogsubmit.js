@@ -15,27 +15,25 @@ function collectData(submit, save) {
     let title = document.getElementById("title").value;
     let name = document.getElementById("name").value;
     let email = document.getElementById("email").value;
-    let subject = document.getElementById("subject").value;
     let headings = [];
     for (let i = 1; i <= headingCoonter; ++i) {
         headings.push(document.getElementById(`heading${i}`).value);
     }
     if(submit && !save) {
         save = false;
-        parseData(title, name, email, subject, headings);
+        parseData(title, name, email, headings);
     }
     if(save && !submit) {
-        saveData(title, name, email, subject, headings);
+        saveData(title, name, email, headings);
     }
     return 0;
 }
 
-function parseData(title, name, email, subject, headings) {
+function parseData(title, name, email, headings) {
     console.log("parsing data to save server-side");
     let parsedData = {
         email: email,
         name: name,
-        subject: subject,
         headings: headings
     };
     db.collection("blog").doc(title).set(parsedData);
@@ -43,12 +41,11 @@ function parseData(title, name, email, subject, headings) {
     return 0;
 }
 
-function saveData(title, name, email, subject, headings) {
+function saveData(title, name, email, headings) {
     let parsedData = {
         title: title,
         email: email,
         name: name,
-        subject: subject,
         headings: headings
     };
     console.log("saving data to local storage");
@@ -66,7 +63,6 @@ function loadData() {
     // Dealing with other fields
     document.getElementById("email").value = grabbedData.email;
     document.getElementById("name").value = grabbedData.name;
-    document.getElementById("subject").value = grabbedData.subject;
     document.getElementById("title").value = grabbedData.title;
 
     document.getElementById(`heading${1}`).value = grabbedData.headings[0];

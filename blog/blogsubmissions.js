@@ -21,7 +21,7 @@ function getSubmissions() {
             .then(snapshot => {
                 snapshot.forEach(doc => {
                     const data = doc.data();
-                    list.innerHTML += `<li><a href="blogtemplate.html?name=${doc.id}"><h3>${doc.id} by, ${data.name} Subject: ${data.subject}</h3></a></li>`;
+                    list.innerHTML += `<li><a href="blogtemplate.html?name=${doc.id}"><h3>${doc.id} by, ${data.name} </h3></a></li>`;
                 });
             })
             .catch(error => {
