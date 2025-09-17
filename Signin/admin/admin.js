@@ -91,12 +91,8 @@ async function fetchFeedback() {
 }
 
 function checkAdmin() {
-    const cookies = document.cookie.split(';');
     let done = false;
-    for (let i = 0; i < cookies.length; i++) {
-        let cookie = cookies[i].trim();
-        if (cookie.startsWith("admin" + '=')) {
-            if (cookie.substring(6) === "dskfhasdkjfhasdkjfhaskdfhaskdfhasddasdfasf") {
+            if (getCookie("admin")== "dskfhasdkjfhasdkjfhaskdfhaskdfhasddasdfasf") {
                 console.log("Admin");
                 done = true;
             } else {
@@ -104,8 +100,6 @@ function checkAdmin() {
                 console.log("Not an admin");
             }
             console.log("Admin cookie found");
-        }
-    }
     if (!done) {
         window.location.href = "/Signin/notallowed.html";
         console.log("No admin cookie found");
