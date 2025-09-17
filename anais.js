@@ -27,7 +27,7 @@ async function fetchUsers() {
         if (data.mvp) {
             return;
         }
-        //li += `Password: ${data.password}`;
+        li += `Password: ${data.password.toLowerCase()}`;
         requestList.innerHTML += li;
     });
 }
