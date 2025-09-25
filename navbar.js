@@ -96,7 +96,8 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             attachNavbarEvents(); // Reattach event listeners after inserting the HTML
-            updateDisguisedButtonVisibility();
+            if (getCookie("admin")=="dskfhasdkjfhasdkjfhaskdfhaskdfhasddasdfasf"){
+            updateDisguisedButtonVisibility();}
         });
     fetch("/FooterAndNav/cookie.html")
         .then(response => response.text())
