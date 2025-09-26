@@ -14,11 +14,25 @@
         <script src="recipesubmit.js"></script>
     </head>
     <body>
+        <script>
+        async function getName() {
+            let data = await db.collection("accounts").doc(getCookie("username")).get()
+            document.getElementById('name').value = data.data().name
+        }
+        async function getEmail() {
+            let data = await db.collection("accounts").doc(getCookie("username")).get()
+            document.getElementById('email').value = data.data().email
+        }
+        window.onload = function() {
+            getName()
+            getEmail()
+        }
+    </script>
         <div class="mainbody" style="margin-top: 75px;">
             <h1>Community Recipes</h1>
-            <input type="text" id="name" required oninput="collectData(false,true)" placeholder="First and Last Name">
+            <input type="text" id="name" required oninput="collectData(false,true)" placeholder="First and Last Name" readonly>
             <br>
-            <input type="text" id="email" required oninput="collectData(false,true)" placeholder="Email Address">
+            <input type="text" id="email" required oninput="collectData(false,true)" placeholder="Email Address" readonly>
             <br>
             <input type="text" id="subject" required oninput="collectData(false,true)" placeholder="Subject">
             <br>
