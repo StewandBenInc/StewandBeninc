@@ -96,7 +96,6 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             attachNavbarEvents(); // Reattach event listeners after inserting the HTML
-            if (getCookie("admin")=="dskfhasdkjfhasdkjfhaskdfhaskdfhasddasdfasf"){
             updateDisguisedButtonVisibility();}
         });
     fetch("/FooterAndNav/cookie.html")
