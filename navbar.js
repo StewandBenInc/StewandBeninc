@@ -96,7 +96,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             attachNavbarEvents(); // Reattach event listeners after inserting the HTML
-            updateDisguisedButtonVisibility();}
+            updateDisguisedButtonVisibility();
         });
     fetch("/FooterAndNav/cookie.html")
         .then(response => response.text())
