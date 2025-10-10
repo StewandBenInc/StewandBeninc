@@ -41,15 +41,7 @@ async function fillIn() {
 }
 
 function signOut() {
-    if(getCookie("username")) {
-        document.cookie = "username=;path=/";
-    }
-    if(getCookie("admin")) {
-        document.cookie = "admin=;path=/";
-    }
-    if(getCookie("mvp")) {
-        document.cookie = "mvp=;path=/";
-    }
+    deleteAllCookies();
     alert("You have been signed out");
     window.location.href = "/index.html";
 }
